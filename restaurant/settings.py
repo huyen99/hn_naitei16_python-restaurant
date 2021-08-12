@@ -35,6 +35,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'main.User'
+
 
 # Application definition
 
