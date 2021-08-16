@@ -44,6 +44,7 @@ class UserManager(BaseUserManager):
         )
         user.is_staff = True
         user.is_admin = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
@@ -52,6 +53,9 @@ class Notify(models.Model):
     created_date = models.DateTimeField()
     is_active = models.BooleanField(default=True)
     duration = models.TimeField(null=True, blank=True)
+    
+    class Meta:
+        verbose_name_plural = "notifies"
 
 class User(AbstractUser):
     email = models.EmailField(max_length=255, unique=True)
@@ -81,6 +85,9 @@ class Food(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+        
+    class Meta:
+        verbose_name_plural = "foods"
 
 class Review(models.Model):
     comment = models.TextField()
@@ -113,6 +120,9 @@ class Status(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "statuses"
 
 class Bill(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
