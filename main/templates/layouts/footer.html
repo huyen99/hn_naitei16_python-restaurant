@@ -1,0 +1,55 @@
+{% load i18n %}
+<footer>
+    <!-- Contact form -->
+    <div class="f-container">
+        <div class="cfttab1">
+            <form style="display: flex; justify-content: baseline;" action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}" />
+                <select name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% for code, name in LANGUAGES %}
+                        <option value="{{ code }}"{% if code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ name }} ({{ code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div><input style="margin-left: 5px; padding: 14px 20px;" type="submit" value="OK" /></div>
+            </form>
+            <br>
+            <div id="ftrabt">
+                <span>{% translate 'About' %}</span><br><br>
+                {% translate 'Django Project 1: Online Restaurant' %}
+            </div>
+            <br><br>
+            <div><i class="fas fa-user-friends"></i>&nbsp&nbsp {% translate 'Team 1' %}</div><br>
+            <div><i class="fas fa-user-friends"></i>&nbsp&nbsp {% translate 'HN_Naitei16_Python' %}</div>
+            <br><br>
+            <div id="ftrsocial">
+                <a href="https://edu-redmine.sun-asterisk.vn/projects/hn_naitei16_python-restaurant/issues">
+                    <i class="fas fa-tasks"></i>
+                </a>
+                <a href="https://github.com/awesome-academy/hn_naitei16_python-restaurant">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+        <div id="footerCtf" class="cfttab2">
+            <span id="gitctf">{% translate 'Comment' %}</span>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input required type="text" id="fname" name="fname" placeholder="{% translate 'Name' %}">
+                <input required type="email" id="email" name="email" placeholder="{% translate 'Email' %}">
+                <textarea id="subject" name="message" placeholder="{% translate 'Write your message here..' %}" style="height:200px"></textarea>
+            
+                <input type="submit" value="{% translate 'Submit' %}">
+            </form>
+        </div>
+    </div>
+    <div class="footer-extension">
+        <i class="fas fa-store"></i>
+        <span style="color: rgb(255, 106, 106);">{% translate 'Online Restaurant' %}</span>
+        <i class="fas fa-shipping-fast"></i> &nbsp&nbsp {% translate 'Sun* Intern 08/2021.' %}
+    </div>
+</footer>
