@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load static %}
+<nav class="mynavbar {% block fbgnav %}{% endblock %}">
+    <a class="nav-logo" href="{% url 'index' %}">{% translate 'Online-Restaurant' %}</a>
+    <div id="toggle_open_search" class="searchtoggle">
+        <i class="fas fa-search"></i>
+    </div>
+    <div class="user-icon dropdown">
+        <i class="far fa-user"></i>
+        <div class="dropdown-content dropbtn">
+            {% if user.is_authenticated %}
+                <a href="">{% translate 'Profile' %}</a>
+                <a href="">{% translate 'Cart' %}</a>
+                <a href="">{% translate 'My Orders' %}</a>
+                <a href="">{% translate 'Logout' %}</a>
+            {% else %}
+                <a href="">{% translate 'Login' %}</a>
+                <a href="">{% translate 'Register' %}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div id="toggle_open_nav" class="toggle-side-nav">
+        <div class="ntlines"></div>
+        <div class="ntlines"></div>
+        <div class="ntlines"></div>
+    </div>
+</nav>

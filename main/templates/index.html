@@ -1,0 +1,107 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Home" %}
+{% endblock %}
+
+{% block content %}
+
+    <!-- FIRST PART -->
+    <div id="first-part">
+        <div class="left-content">
+            <p class="left-title">
+                {% translate "Welcome to our Online Restaurant" %}
+            </p>
+            <p class="left-para">
+                <!-- include "messages.html" -->
+            </p>
+            <br>
+            <p>
+                <a class="btn-homepage" href="#3-steps">{% translate "Take a look" %}</a>
+            </p>
+        </div>
+        <div class="right-content">
+            <img src="{% static 'img/theme.jpeg' %}" alt="{% translate 'pizza-image' %}">
+        </div>
+    </div>
+    
+    <!-- SECOND PART -->
+    <div id="3-steps"></div>
+    <div class="p1-headingWrap">
+        <h2 class="p1-heading">{% translate "3-Steps to get our Food" %}</h2>
+    </div>
+    <div class="tcrds">
+        <a id="tcrd1" href="#menu">
+            <div class="tcrdimg">
+                <i class="fas fa-truck"></i>
+            </div>
+            <span class="tcrdTitle">{% translate "Order" %}</span>
+            <span class="tcrdContent">{% translate "Order food from menu below" %}</span>
+        </a>
+        <a id="tcrd2" href="">
+            <div class="tcrdimg">
+                <i class="fas fa-money-check-alt"></i>
+            </div>
+            <span class="tcrdTitle">{% translate "Cook and Deliver" %}</span>
+            <span class="tcrdContent">{% translate "Checkout cart and pay the bill" %}</span>
+        </a>
+        <a id="tcrd3" href="">
+            <div class="tcrdimg">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+            <span class="tcrdTitle">{% translate "Enjoy" %}</span>
+            <span class="tcrdContent">{% translate "Tracking and receive your order" %}</span>
+        </a>
+    </div>
+    
+    <!-- THIRD PART: MENU -->
+    <div class="m-jumbo">
+        <h2 class="p2-heading">{% translate "Our Menu" %}</h2>
+    </div>
+    
+    <div id="menu"></div>
+    <div class="p1-headingWrap">
+        <h2 class="p1-heading">{% translate "Customers' Top Picks" %}</h2>
+    </div>
+    <div class="third-part">
+        {% for food in foods %}
+            <div class="card">
+                {% for img in food.image_set.all %}
+                    {% if forloop.counter == 1 %}
+                        <img src="{{ img.url }}" alt="{% translate 'Food Image' %}" style="width: 100%; height: 50%">
+                    {% endif %}
+                {% empty %}
+                    <img src="{% static 'img/default.jpeg' %}" alt="{% translate 'Food Image' %}" style="width:100%">
+                {% endfor %}
+                <div class="middle">
+                    <div class="text">
+                        <a href=""><i class="fas fa-cart-plus"></i>{% translate "Login" %}</a>
+                    </div>
+                </div>
+                <div class="container">
+                    <h4 class="foodName">
+                        {{ food.name }}
+                        <a style="margin-left: 10px;" href=""><i class="fas fa-external-link-alt "></i></a>
+                        <i class="far fa-heart nf-heart"></i>
+                    </h4>
+                    <p>
+                        {% if food.rating == 0 %}
+                            <span class="far fa-star nf-star"></span>
+                        {% else %}
+                            {% for i in '12345'|make_list %}
+                                {% if forloop.counter <= food.rating %}
+                                    <span class="fas fa-star f-star"></span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </p>
+                    <p class="c-subtext">${{ food.price }}</p>
+                    <p class="description">{{ food.description|truncatechars:150 }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

@@ -79,7 +79,7 @@ class Food(models.Model):
     description = models.TextField(null=True, blank=True)
     price = models.FloatField()
     discount = models.FloatField(null=True, blank=True)
-    order_count = models.IntegerField()
+    order_count = models.IntegerField(default=0)
     rating = models.FloatField(default=0)
 
     def __str__(self):
@@ -96,12 +96,12 @@ class Review(models.Model):
     food = models.ForeignKey('Food', on_delete=models.CASCADE, null=True)
 
 class Image(models.Model):
-    food = models.ForeignKey(Food, on_delete=models.CASCADE, null=True, blank=True)
+    food = models.ForeignKey('Food', on_delete=models.CASCADE, null=True, blank=True)
     url = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.food
+        return self.url
 
 class Coupon(models.Model):
     code = models.CharField(max_length=50)

@@ -1,0 +1,10 @@
+{% load i18n %}
+<div id="myOverlay" class="overlay">
+    <span class="closebtn" id="toggle_close_search" title="{% translate 'Close' %}">×</span>
+    <div class="overlay-content">
+        <form method="GET" action="/search">
+            <input required name="query" id="search" type="text" placeholder="{% translate 'Search' %}">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</div>

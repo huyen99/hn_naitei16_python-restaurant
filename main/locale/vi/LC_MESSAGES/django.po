@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Create locale file: django-admin makemessages -l vi
+# Update all local files (without losing current translations): django-admin makemessages -a -s --no-wrap
+# Compile: django-admin compilemessages
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-16 16:43+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/index.html:6
+msgid "OnlineRestaurant | Home"
+msgstr "Trang chủ"
+
+#: templates/index.html:15
+msgid "Welcome to our Online Restaurant"
+msgstr "Chào mừng đến với nhà hàng Online"
+
+#: templates/index.html:22
+msgid "Take a look"
+msgstr "Xem thử"
+
+#: templates/index.html:26
+msgid "pizza-image"
+msgstr "ảnh pizza"
+
+#: templates/index.html:33
+msgid "3-Steps to get our Food"
+msgstr "3 bước để có đồ ăn ngon"
+
+#: templates/index.html:40
+msgid "Order"
+msgstr "Chọn món"
+
+#: templates/index.html:41
+msgid "Order food from menu below"
+msgstr "Hãy chọn từ thực đơn ở dưới"
+
+#: templates/index.html:47
+msgid "Cook and Deliver"
+msgstr "Nấu và giao hàng"
+
+#: templates/index.html:48
+msgid "Checkout cart and pay the bill"
+msgstr "Ngay khi hoàn tất thanh toán"
+
+#: templates/index.html:54
+msgid "Enjoy"
+msgstr "Thưởng thức"
+
+#: templates/index.html:55
+msgid "Tracking and receive your order"
+msgstr "Sau khi theo dõi đơn hàng và nhận món"
+
+#: templates/index.html:61
+msgid "Our Menu"
+msgstr "Thực đơn"
+
+#: templates/index.html:66
+msgid "Customers' Top Picks"
+msgstr "Món ăn được ưa thích"
+
+#: templates/index.html:73 templates/index.html:76
+msgid "Food Image"
+msgstr "Ảnh món ăn"
+
+#: templates/index.html:80 templates/layouts/navbar.html:16
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
+msgid "About"
+msgstr "Thông tin"
+
+#: templates/layouts/footer.html:23
+msgid "Django Project 1: Online Restaurant"
+msgstr ""
+
+#: templates/layouts/footer.html:26
+msgid "Team 1"
+msgstr "Nhóm 1"
+
+#: templates/layouts/footer.html:27
+msgid "HN_Naitei16_Python"
+msgstr ""
+
+#: templates/layouts/footer.html:39
+msgid "Comment"
+msgstr "Nhận xét"
+
+#: templates/layouts/footer.html:42
+msgid "Name"
+msgstr "Tên"
+
+#: templates/layouts/footer.html:43
+msgid "Email"
+msgstr ""
+
+#: templates/layouts/footer.html:44
+msgid "Write your message here.."
+msgstr "Viết lời nhắn của bạn ở đây"
+
+#: templates/layouts/footer.html:46
+msgid "Submit"
+msgstr "Gửi"
+
+#: templates/layouts/footer.html:52
+msgid "Online Restaurant"
+msgstr ""
+
+#: templates/layouts/footer.html:53
+msgid "Sun* Intern 08/2021."
+msgstr ""
+
+#: templates/layouts/navbar.html:3
+msgid "Online-Restaurant"
+msgstr ""
+
+#: templates/layouts/navbar.html:11
+msgid "Profile"
+msgstr "Hồ sơ người dùng"
+
+#: templates/layouts/navbar.html:12
+msgid "Cart"
+msgstr "Giỏ hàng"
+
+#: templates/layouts/navbar.html:13
+msgid "My Orders"
+msgstr "Đơn của tôi"
+
+#: templates/layouts/navbar.html:14
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: templates/layouts/navbar.html:17
+msgid "Register"
+msgstr "Đăng ký"
+
+#: templates/layouts/search_bar.html:3
+msgid "Close"
+msgstr "Đóng"
+
+#: templates/layouts/search_bar.html:6
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: templates/layouts/side_navbar.html:5
+msgid "Home"
+msgstr "Trang chủ"
+
+#: templates/layouts/side_navbar.html:6
+msgid "Menu"
+msgstr "Thực đơn"
