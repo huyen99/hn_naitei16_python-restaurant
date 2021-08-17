@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-16 16:43+0700\n"
+"POT-Creation-Date: 2021-08-17 17:49+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/accounts/login.html:7
+msgid "OnlineRestaurant | Login"
+msgstr "Đăng nhập"
+
+#: templates/accounts/login.html:16 templates/index.html:83
+#: templates/layouts/navbar.html:20
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: templates/accounts/login.html:20 templates/layouts/footer.html:46
+msgid "Submit"
+msgstr "Gửi"
+
+#: templates/accounts/login.html:22
+msgid "Forgot Password?"
+msgstr "Quên mật khẩu?"
+
+#: templates/accounts/login.html:24
+msgid "Need an Account?"
+msgstr "Chưa có tài khoản?"
+
+#: templates/accounts/login.html:24
+msgid "Sign Up Now"
+msgstr "Đăng ký ngay"
+
+#: templates/accounts/logout.html:5
+msgid "OnlineRestaurant | Logout"
+msgstr "Đăng xuất"
+
+#: templates/accounts/logout.html:15
+msgid "You have been logged out"
+msgstr "Bạn đã đăng xuất thành công"
+
+#: templates/accounts/logout.html:16
+msgid "Login Again"
+msgstr "Đăng nhập lại"
+
+#: templates/accounts/password_reset.html:6
+#: templates/accounts/password_reset_complete.html:5
+#: templates/accounts/password_reset_confirm.html:6
+#: templates/accounts/password_reset_done.html:5
+msgid "OnlineRestaurant | Password Reset"
+msgstr "Cấp lại mật khẩu"
+
+#: templates/accounts/password_reset.html:15
+#: templates/accounts/password_reset_confirm.html:15
+#: templates/accounts/password_reset_confirm.html:19
+msgid "Reset Password"
+msgstr "Cấp lại mật khẩu"
+
+#: templates/accounts/password_reset.html:19
+msgid "Request Password Reset"
+msgstr "Yêu cầu cấp lại mật khẩu"
+
+#: templates/accounts/password_reset_complete.html:16
+msgid "Your password has been set."
+msgstr "Mật khẩu mới của bạn đã được thay đổi."
+
+#: templates/accounts/password_reset_complete.html:17
+msgid "Sign In Here"
+msgstr "Đăng nhập ở đây"
+
+#: templates/accounts/password_reset_done.html:14
+msgid "An Email has been sent with instruction to reset your password"
+msgstr "Hướng dẫn cấp lại mật khẩu đã được gửi đến hòm thư của bạn"
 
 #: templates/index.html:6
 msgid "OnlineRestaurant | Home"
@@ -77,10 +143,6 @@ msgstr "Món ăn được ưa thích"
 msgid "Food Image"
 msgstr "Ảnh món ăn"
 
-#: templates/index.html:80 templates/layouts/navbar.html:16
-msgid "Login"
-msgstr "Đăng nhập"
-
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
 msgid "About"
 msgstr "Thông tin"
@@ -113,10 +175,6 @@ msgstr ""
 msgid "Write your message here.."
 msgstr "Viết lời nhắn của bạn ở đây"
 
-#: templates/layouts/footer.html:46
-msgid "Submit"
-msgstr "Gửi"
-
 #: templates/layouts/footer.html:52
 msgid "Online Restaurant"
 msgstr ""
@@ -125,27 +183,27 @@ msgstr ""
 msgid "Sun* Intern 08/2021."
 msgstr ""
 
-#: templates/layouts/navbar.html:3
+#: templates/layouts/navbar.html:4
 msgid "Online-Restaurant"
 msgstr ""
 
-#: templates/layouts/navbar.html:11
+#: templates/layouts/navbar.html:15
 msgid "Profile"
 msgstr "Hồ sơ người dùng"
 
-#: templates/layouts/navbar.html:12
+#: templates/layouts/navbar.html:16
 msgid "Cart"
 msgstr "Giỏ hàng"
 
-#: templates/layouts/navbar.html:13
+#: templates/layouts/navbar.html:17
 msgid "My Orders"
 msgstr "Đơn của tôi"
 
-#: templates/layouts/navbar.html:14
+#: templates/layouts/navbar.html:18
 msgid "Logout"
 msgstr "Đăng xuất"
 
-#: templates/layouts/navbar.html:17
+#: templates/layouts/navbar.html:21
 msgid "Register"
 msgstr "Đăng ký"
 

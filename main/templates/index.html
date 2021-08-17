@@ -77,7 +77,11 @@
                 {% endfor %}
                 <div class="middle">
                     <div class="text">
-                        <a href=""><i class="fas fa-cart-plus"></i>{% translate "Login" %}</a>
+                        {% if user.is_authenticated %}
+                            <i class="fas fa-cart-plus"></i>
+                        {% else %}
+                            <a href="{% url 'login' %}"><i class="fas fa-cart-plus"></i>{% translate "Login" %}</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="container">

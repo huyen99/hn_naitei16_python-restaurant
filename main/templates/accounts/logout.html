@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Logout" %}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block content %}
+
+<div class="smtmsg">
+    <h2>{% translate "You have been logged out" %}</h2> 
+    <p><a href="{% url 'login' %}">{% translate "Login Again" %}</a></p>
+</div>
+{% endblock %}
