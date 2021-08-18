@@ -57,14 +57,28 @@
     </div>
     
     <!-- THIRD PART: MENU -->
-    <div class="m-jumbo">
-        <h2 class="p2-heading">{% translate "Our Menu" %}</h2>
-    </div>
-    
-    <div id="menu"></div>
-    <div class="p1-headingWrap">
-        <h2 class="p1-heading">{% translate "Customers' Top Picks" %}</h2>
-    </div>
+    {% if keyword == '' %}
+        <div class="m-jumbo">
+            <h2 class="p2-heading">{% translate "Our Menu" %}</h2>
+        </div>
+        
+        <div id="menu"></div>
+        <div class="p1-headingWrap">
+            <h2 class="p1-heading">{% translate "Customers' Top Picks" %}</h2>
+        </div>
+    {% else %}
+        <div id="search-result" class="m-jumbo">
+            <h2 class="p2-heading">{% translate "Search Results" %}</h2>
+        </div>
+
+        <ul class="breadcrumb">
+            <em>{% translate "Your search" %} 
+                <b style="font-family: sans-serif; font-size: x-large;">{{ keyword }}</b> 
+                {% translate "returned" %} {{ res|length }} {% translate "result" %}{{ res|length|pluralize }}
+            </em>
+        </ul>
+    {% endif %}
+        
     <div class="third-part">
         {% for food in foods %}
             <div class="card">
