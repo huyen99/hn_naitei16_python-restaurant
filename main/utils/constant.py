@@ -1,0 +1,1 @@
+PHONE_NUMBER_VALIDATOR=r'^\+?1?\d{9,15}$'

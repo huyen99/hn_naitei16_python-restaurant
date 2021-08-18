@@ -50,6 +50,61 @@ body{
     -ms-filter: "alpha(opacity=100)";
 }
 
+/* FLASH MESSAGES */
+
+.msgmessages{
+    height: fit-content;
+    margin: 70px 10px 0px 10px;
+    z-index: 2;
+}
+  
+.alertmsg {
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+  
+.alertmsg-def{
+    background-color: #2196F3;
+    color: white;
+}
+
+.alertmsg-success {
+    background-color: #04AA6D;
+    color: white;
+}
+  
+.alertmsg-info {
+    background-color: #2196F3;
+    color: white;
+}
+  
+.alertmsg-warning {
+    background-color: #ff9800;
+    color: white;
+}
+  
+.alertmsg-error {
+    background-color: #ff1100;
+    color: white;
+}
+  
+.closebtnmsg {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+.closebtnmsg:hover {
+    color: black;
+}
+
 /* NAVBAR */
 
 .mynavbar{
@@ -784,7 +839,7 @@ body{
     padding: 2em;
     margin: 100px auto;
     display: block;
-    max-width: 400px;
+    max-width: 415px;
     box-shadow: 0px 0px 12px -5px grey;
 }
 
@@ -826,6 +881,20 @@ body{
     display: block;
     max-width: 400px;
     margin-top: 100px;
+}
+
+.helptext{
+    opacity: 0.5;
+    font-family: lobster;
+}
+
+.lr-form ul {
+    opacity: 0.5;
+    font-family: lobster;
+}
+
+.lr-form ul.errorlist {
+    opacity: 1;
 }
 
 /* BREADCRUMB */

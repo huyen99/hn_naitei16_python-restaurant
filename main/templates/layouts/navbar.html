@@ -3,7 +3,7 @@
 <nav class="mynavbar {% block fbgnav %}{% endblock %}">
     <a class="nav-logo" href="{% url 'index' %}">{% translate 'Online-Restaurant' %}</a>
     {% if user.is_authenticated %}
-        Hi, {{ user.email }}
+        {% translate "Hi" %}, {{ user.email }}
     {% endif %}
     <div id="toggle_open_search" class="searchtoggle">
         <i class="fas fa-search"></i>
@@ -18,7 +18,7 @@
                 <a href="{% url 'logout' %}">{% translate 'Logout' %}</a>
             {% else %}
                 <a href="{% url 'login' %}">{% translate 'Login' %}</a>
-                <a href="">{% translate 'Register' %}</a>
+                <a href="{% url 'register' %}">{% translate 'Register' %}</a>
             {% endif %}
         </div>
     </div>

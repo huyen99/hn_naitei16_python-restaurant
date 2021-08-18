@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 10:55+0700\n"
+"POT-Creation-Date: 2021-08-18 15:45+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,79 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: forms.py:11
+msgid "Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
+msgstr ""
+
+#: forms.py:12
+msgid "Phone number"
+msgstr ""
+
+#: forms.py:13
+msgid "Address"
+msgstr ""
+
+#: i18n.py:10
+msgid "Enter the same password as before, for verification."
+msgstr ""
+
+#: i18n.py:11
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: i18n.py:12
+#, python-format
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr ""
+
+#: i18n.py:13
+msgid "Your password can’t be too similar to your other personal information."
+msgstr ""
+
+#: i18n.py:14
+msgid "This password is too common."
+msgstr ""
+
+#: i18n.py:15
+msgid "Your password can’t be a commonly used password."
+msgstr ""
+
+#: i18n.py:16
+msgid "This password is entirely numeric."
+msgstr ""
+
+#: i18n.py:17
+msgid "Your password can’t be entirely numeric."
+msgstr ""
+
+#: i18n.py:18
+msgid "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters."
+msgstr ""
+
+#: i18n.py:20
+#, python-format
+msgid "Your password must contain at least %(min_length)d character."
+msgid_plural "Your password must contain at least %(min_length)d characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: i18n.py:25
+#, python-format
+msgid "This password is too short. It must contain at least %(min_length)d character."
+msgid_plural "This password is too short. It must contain at least %(min_length)d characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: i18n.py:29
+msgid "The two password fields didn’t match."
+msgstr ""
+
 #: templates/accounts/login.html:7
 msgid "OnlineRestaurant | Login"
 msgstr ""
 
-#: templates/accounts/login.html:16 templates/foods/search_results.html:42
-#: templates/index.html:83 templates/layouts/navbar.html:20
+#: templates/accounts/login.html:16 templates/index.html:97
+#: templates/layouts/navbar.html:20
 msgid "Login"
 msgstr ""
 
@@ -30,7 +97,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: templates/accounts/login.html:22
+#: templates/accounts/login.html:22 templates/accounts/register.html:21
 msgid "Forgot Password?"
 msgstr ""
 
@@ -83,30 +150,24 @@ msgstr ""
 msgid "An Email has been sent with instruction to reset your password"
 msgstr ""
 
-#: templates/foods/search_results.html:6
-msgid "OnlineRestaurant | Search Results"
+#: templates/accounts/register.html:5
+msgid "OnlineRestaurant | Register"
 msgstr ""
 
-#: templates/foods/search_results.html:16
-msgid "Search Results"
+#: templates/accounts/register.html:14
+msgid "Join Today"
 msgstr ""
 
-#: templates/foods/search_results.html:20
-msgid "Your search"
+#: templates/accounts/register.html:19
+msgid "Sign Up"
 msgstr ""
 
-#: templates/foods/search_results.html:22
-msgid "returned"
+#: templates/accounts/register.html:23
+msgid "Already Have an Account?"
 msgstr ""
 
-#: templates/foods/search_results.html:22
-msgid "result"
-msgstr ""
-
-#: templates/foods/search_results.html:32
-#: templates/foods/search_results.html:35 templates/index.html:73
-#: templates/index.html:76
-msgid "Food Image"
+#: templates/accounts/register.html:23
+msgid "Sign In"
 msgstr ""
 
 #: templates/index.html:6
@@ -153,12 +214,32 @@ msgstr ""
 msgid "Tracking and receive your order"
 msgstr ""
 
-#: templates/index.html:61
+#: templates/index.html:62
 msgid "Our Menu"
 msgstr ""
 
-#: templates/index.html:66
+#: templates/index.html:67
 msgid "Customers' Top Picks"
+msgstr ""
+
+#: templates/index.html:71
+msgid "Search Results"
+msgstr ""
+
+#: templates/index.html:75
+msgid "Your search"
+msgstr ""
+
+#: templates/index.html:77
+msgid "returned"
+msgstr ""
+
+#: templates/index.html:77
+msgid "result"
+msgstr ""
+
+#: templates/index.html:87 templates/index.html:90
+msgid "Food Image"
 msgstr ""
 
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
@@ -205,6 +286,10 @@ msgstr ""
 msgid "Online-Restaurant"
 msgstr ""
 
+#: templates/layouts/navbar.html:6
+msgid "Hi"
+msgstr ""
+
 #: templates/layouts/navbar.html:15
 msgid "Profile"
 msgstr ""
@@ -239,4 +324,8 @@ msgstr ""
 
 #: templates/layouts/side_navbar.html:6
 msgid "Menu"
+msgstr ""
+
+#: views.py:29
+msgid "Your account has been created! You can login now"
 msgstr ""
