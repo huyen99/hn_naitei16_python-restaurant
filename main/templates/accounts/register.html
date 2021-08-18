@@ -1,10 +1,8 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
-{% load static %}
-{% load crispy_forms_tags %}
 
 {% block title %}
-    {% translate "OnlineRestaurant | Login" %}
+    {% translate "OnlineRestaurant | Register" %}
 {% endblock %}
 
 {% block fbgnav %}
@@ -13,15 +11,17 @@
 
 {% block content %}
 <div class="lr-form">
-    <span class="lrhead">{% translate "Login" %}</span>
+    <span class="lrhead">{% translate "Join Today" %}</span>
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="{% translate 'Submit' %}">
+        <br>
+        <input type="submit" value="{% translate 'Sign Up' %}">
     </form>
     <a href="{% url 'password_reset' %}">{% translate "Forgot Password?" %}</a>
     <p class="text-muted">
-        {% translate "Need an Account?" %} <a class="ml-2" href="{% url 'register' %}">{% translate "Sign Up Now" %}</a>
+        {% translate "Already Have an Account?" %} <a class="ml-2" href="{% url 'login' %}">{% translate "Sign In" %}</a>
     </p>
 </div>
+
 {% endblock %}
