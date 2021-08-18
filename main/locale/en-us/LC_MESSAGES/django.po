@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-16 16:43+0700\n"
+"POT-Creation-Date: 2021-08-17 17:49+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,72 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: templates/accounts/login.html:7
+msgid "OnlineRestaurant | Login"
+msgstr ""
+
+#: templates/accounts/login.html:16 templates/index.html:83
+#: templates/layouts/navbar.html:20
+msgid "Login"
+msgstr ""
+
+#: templates/accounts/login.html:20 templates/layouts/footer.html:46
+msgid "Submit"
+msgstr ""
+
+#: templates/accounts/login.html:22
+msgid "Forgot Password?"
+msgstr ""
+
+#: templates/accounts/login.html:24
+msgid "Need an Account?"
+msgstr ""
+
+#: templates/accounts/login.html:24
+msgid "Sign Up Now"
+msgstr ""
+
+#: templates/accounts/logout.html:5
+msgid "OnlineRestaurant | Logout"
+msgstr ""
+
+#: templates/accounts/logout.html:15
+msgid "You have been logged out"
+msgstr ""
+
+#: templates/accounts/logout.html:16
+msgid "Login Again"
+msgstr ""
+
+#: templates/accounts/password_reset.html:6
+#: templates/accounts/password_reset_complete.html:5
+#: templates/accounts/password_reset_confirm.html:6
+#: templates/accounts/password_reset_done.html:5
+msgid "OnlineRestaurant | Password Reset"
+msgstr ""
+
+#: templates/accounts/password_reset.html:15
+#: templates/accounts/password_reset_confirm.html:15
+#: templates/accounts/password_reset_confirm.html:19
+msgid "Reset Password"
+msgstr ""
+
+#: templates/accounts/password_reset.html:19
+msgid "Request Password Reset"
+msgstr ""
+
+#: templates/accounts/password_reset_complete.html:16
+msgid "Your password has been set."
+msgstr ""
+
+#: templates/accounts/password_reset_complete.html:17
+msgid "Sign In Here"
+msgstr ""
+
+#: templates/accounts/password_reset_done.html:14
+msgid "An Email has been sent with instruction to reset your password"
+msgstr ""
 
 #: templates/index.html:6
 msgid "OnlineRestaurant | Home"
@@ -73,10 +139,6 @@ msgstr ""
 msgid "Food Image"
 msgstr ""
 
-#: templates/index.html:80 templates/layouts/navbar.html:16
-msgid "Login"
-msgstr ""
-
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
 msgid "About"
 msgstr ""
@@ -109,10 +171,6 @@ msgstr ""
 msgid "Write your message here.."
 msgstr ""
 
-#: templates/layouts/footer.html:46
-msgid "Submit"
-msgstr ""
-
 #: templates/layouts/footer.html:52
 msgid "Online Restaurant"
 msgstr ""
@@ -121,27 +179,27 @@ msgstr ""
 msgid "Sun* Intern 08/2021."
 msgstr ""
 
-#: templates/layouts/navbar.html:3
+#: templates/layouts/navbar.html:4
 msgid "Online-Restaurant"
 msgstr ""
 
-#: templates/layouts/navbar.html:11
+#: templates/layouts/navbar.html:15
 msgid "Profile"
 msgstr ""
 
-#: templates/layouts/navbar.html:12
+#: templates/layouts/navbar.html:16
 msgid "Cart"
 msgstr ""
 
-#: templates/layouts/navbar.html:13
+#: templates/layouts/navbar.html:17
 msgid "My Orders"
 msgstr ""
 
-#: templates/layouts/navbar.html:14
+#: templates/layouts/navbar.html:18
 msgid "Logout"
 msgstr ""
 
-#: templates/layouts/navbar.html:17
+#: templates/layouts/navbar.html:21
 msgid "Register"
 msgstr ""
 

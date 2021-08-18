@@ -2,6 +2,9 @@
 {% load static %}
 <nav class="mynavbar {% block fbgnav %}{% endblock %}">
     <a class="nav-logo" href="{% url 'index' %}">{% translate 'Online-Restaurant' %}</a>
+    {% if user.is_authenticated %}
+        Hi, {{ user.email }}
+    {% endif %}
     <div id="toggle_open_search" class="searchtoggle">
         <i class="fas fa-search"></i>
     </div>
@@ -12,9 +15,9 @@
                 <a href="">{% translate 'Profile' %}</a>
                 <a href="">{% translate 'Cart' %}</a>
                 <a href="">{% translate 'My Orders' %}</a>
-                <a href="">{% translate 'Logout' %}</a>
+                <a href="{% url 'logout' %}">{% translate 'Logout' %}</a>
             {% else %}
-                <a href="">{% translate 'Login' %}</a>
+                <a href="{% url 'login' %}">{% translate 'Login' %}</a>
                 <a href="">{% translate 'Register' %}</a>
             {% endif %}
         </div>

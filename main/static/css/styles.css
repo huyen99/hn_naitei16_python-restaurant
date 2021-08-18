@@ -777,3 +777,53 @@ body{
 .btn{
     border-radius: 0 !important;
 }
+
+/* LOGIN AND REGISTER FORM */
+
+.lr-form{
+    padding: 2em;
+    margin: 100px auto;
+    display: block;
+    max-width: 400px;
+    box-shadow: 0px 0px 12px -5px grey;
+}
+
+.lr-form input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    resize: vertical;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+}
+
+.lr-form input[type=submit] {
+    background-color: #ff0101;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #ff0101;
+}
+
+.lr-form input[type=submit]:hover {
+    background-color: rgb(255, 255, 255);
+    color: #FD0100;
+}
+
+.lrhead {
+    display: block;
+    padding: 60px 0px 10px 0px;
+    letter-spacing: 1.2px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.smtmsg{
+    margin: 0 auto;
+    display: block;
+    max-width: 400px;
+    margin-top: 100px;
+}
