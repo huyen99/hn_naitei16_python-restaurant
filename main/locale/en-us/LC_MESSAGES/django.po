@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 17:49+0700\n"
+"POT-Creation-Date: 2021-08-18 10:55+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,8 @@ msgstr ""
 msgid "OnlineRestaurant | Login"
 msgstr ""
 
-#: templates/accounts/login.html:16 templates/index.html:83
-#: templates/layouts/navbar.html:20
+#: templates/accounts/login.html:16 templates/foods/search_results.html:42
+#: templates/index.html:83 templates/layouts/navbar.html:20
 msgid "Login"
 msgstr ""
 
@@ -83,6 +83,32 @@ msgstr ""
 msgid "An Email has been sent with instruction to reset your password"
 msgstr ""
 
+#: templates/foods/search_results.html:6
+msgid "OnlineRestaurant | Search Results"
+msgstr ""
+
+#: templates/foods/search_results.html:16
+msgid "Search Results"
+msgstr ""
+
+#: templates/foods/search_results.html:20
+msgid "Your search"
+msgstr ""
+
+#: templates/foods/search_results.html:22
+msgid "returned"
+msgstr ""
+
+#: templates/foods/search_results.html:22
+msgid "result"
+msgstr ""
+
+#: templates/foods/search_results.html:32
+#: templates/foods/search_results.html:35 templates/index.html:73
+#: templates/index.html:76
+msgid "Food Image"
+msgstr ""
+
 #: templates/index.html:6
 msgid "OnlineRestaurant | Home"
 msgstr ""
@@ -133,10 +159,6 @@ msgstr ""
 
 #: templates/index.html:66
 msgid "Customers' Top Picks"
-msgstr ""
-
-#: templates/index.html:73 templates/index.html:76
-msgid "Food Image"
 msgstr ""
 
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7

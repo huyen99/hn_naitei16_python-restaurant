@@ -26,6 +26,12 @@ document.getElementById("toggle_open_nav").onclick = openNav;
 
 document.getElementById("toggle_close_nav").onclick = closeNav;
 
+console.log(window.location);
+if (window.location.search.includes('query')) {
+    element = document.getElementById("search-result") ? document.getElementById("search-result") : document.getElementById("menu");
+    element.scrollIntoView();
+}
+
 const navbar = document.querySelector('.mynavbar');
 window.onscroll = () => {
     if (window.scrollY > 100) {
