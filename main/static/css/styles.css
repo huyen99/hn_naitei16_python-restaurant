@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans&family=Pacifico&display=swap');
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 *{
     scroll-behavior: smooth;
@@ -486,7 +487,7 @@ body{
 .m-jumbo{
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1607290817806-e93c813ff329?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background.jpeg");
     background-color: #242424;
     background-size: cover;
     text-align: center;
@@ -530,7 +531,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .btn-homepage{
@@ -557,6 +558,10 @@ body{
     font-family: Florence;
     font-weight: bold;
     font-size: 20px;
+}
+
+.foodLink {
+    margin-left: 10px;
 }
 
 .description {
@@ -903,6 +908,255 @@ ul.breadcrumb {
     padding: 10px 16px;
     list-style: none;
     background-color: rgb(255, 255, 255);
-    text-align: center;
     line-height: 2.2em;
+    text-align: center;
+}
+
+b.searchResult {
+    font-size: x-large;
+    font-family: sans-serif;
+}
+
+/* FOOD DETAILS*/
+
+.bscard {
+    border: none
+}
+
+.food {
+    padding: 30px 20px;
+    background-color: #eee;
+    height: 100%;
+    width: 100%;
+    text-align: justify;
+}
+
+.act-price {
+    color: red;
+    font-weight: 700
+}
+
+.dis-price {
+    text-decoration: line-through
+}
+
+.about {
+    font-size: 14px
+}
+
+.btn-danger {
+    background-color: #ff0000 !important;
+    border-color: #ff0000 !important
+}
+
+.btn-danger:hover {
+    background-color: #da0606 !important;
+    border-color: #da0606 !important
+}
+
+.btn-danger:focus {
+    box-shadow: none
+}
+
+.cart i {
+    margin-right: 10px
+}
+
+#atc{
+  font-size: 16px;
+  display: inline;
+  float: left;
+}
+
+/* STARS RATING */
+
+.starrating {
+    float: left;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.starrating :hover {
+    cursor: pointer;
+}
+
+.starrating > input { display: none; } 
+
+.starrating > label:before { 
+    content: "\f005";
+    margin: 2px;
+    font-size: 26px;
+    font-family: FontAwesome;
+    display: inline-block;
+}
+
+.starrating > label { color: #222222; }
+
+.starrating > input:checked ~ label { color: #ffca08; } 
+
+.starrating > input:hover ~ label { color: #ffca08; } 
+
+.btn-grey{
+    background-color: #D8D8D8;
+	color: #FFF;
+}
+
+.rating-block{
+	background-color: #FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+    text-align: center;
+}
+
+/* COMMENT */
+
+.bold{
+	font-weight:700;
+}
+
+.padding-bottom-7{
+	padding-bottom:7px;
+}
+
+.review-block{
+	background-color: #FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+
+.review-block-date{
+	font-size:12px;
+}
+
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+
+.review-block-description{
+	font-size:13px;
+}
+
+.page-header {
+    position: relative;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.reviews {
+    color: #555;    
+    font-weight: bold;
+    margin: 10px auto 20px;
+}
+
+.notes {
+    color: #999;
+    font-size: 12px;
+}
+
+.media .media-object { max-width: 100px; }
+
+.media-body { position: relative; }
+
+.media-date { 
+    position: absolute; 
+    right: 25px;
+    top: 15px;
+}
+
+.media-date li { padding: 0; }
+
+.media-date li:first-child:before { content: ''; }
+
+.media-date li:before { 
+    content: '.'; 
+    margin-left: -2px; 
+    margin-right: 2px;
+}
+
+.media-comment { margin-bottom: 20px; }
+
+.media-replied { margin: 0 0 20px 50px; }
+
+.media-replied .media-heading { padding-left: 6px; }
+
+.btn-circle {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 20px;
+}
+
+.btn-circle span { padding-right: 6px; }
+
+.embed-responsive { margin-bottom: 20px; }
+
+.tab-content {
+    padding: 50px 15px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.custom-input-file {
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: #eee url("../img/avatar.png");    
+    background-size: 120px;
+    border-radius: 120px;
+}
+
+input[type="file"]{
+    z-index: 999;
+    line-height: 0;
+    font-size: 0;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity = 0);-ms-filter: "alpha(opacity=0)";
+    margin: 0;
+    padding:0;
+    left:0;
+}
+
+.uploadPhoto {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    display: none;
+    width: 50%;
+    height: 50%;
+    color: #fff;    
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;    
+    background-color: rgba(0,0,0,.3);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.custom-input-file:hover .uploadPhoto { display: block; }
+
+/* CART */
+
+.tdinp {
+    text-align: center;
+    height: 40px;
+    margin-right: 10px;
 }

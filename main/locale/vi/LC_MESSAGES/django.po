@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 15:45+0700\n"
+"POT-Creation-Date: 2021-08-22 03:50+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgstr "Hai trường mật khẩu không giống nhau."
 msgid "OnlineRestaurant | Login"
 msgstr "Đăng nhập"
 
-#: templates/accounts/login.html:16 templates/index.html:97
+#: templates/accounts/login.html:16 templates/index.html:99
 #: templates/layouts/navbar.html:20
 msgid "Login"
 msgstr "Đăng nhập"
@@ -101,15 +101,15 @@ msgstr "Đăng nhập"
 msgid "Submit"
 msgstr "Gửi"
 
-#: templates/accounts/login.html:22 templates/accounts/register.html:21
+#: templates/accounts/login.html:23 templates/accounts/register.html:21
 msgid "Forgot Password?"
 msgstr "Quên mật khẩu?"
 
-#: templates/accounts/login.html:24
+#: templates/accounts/login.html:25
 msgid "Need an Account?"
 msgstr "Chưa có tài khoản?"
 
-#: templates/accounts/login.html:24
+#: templates/accounts/login.html:25
 msgid "Sign Up Now"
 msgstr "Đăng ký ngay"
 
@@ -178,6 +178,88 @@ msgstr "Đã có tài khoản?"
 msgid "Sign In"
 msgstr "Đăng nhập"
 
+#: templates/foods/details.html:6
+msgid "OnlineRestaurant"
+msgstr ""
+
+#: templates/foods/details.html:21 templates/layouts/side_navbar.html:5
+msgid "Home"
+msgstr "Trang chủ"
+
+#: templates/foods/details.html:59
+msgid "Previous"
+msgstr "Trước"
+
+#: templates/foods/details.html:63
+msgid "Next"
+msgstr "Sau"
+
+#: templates/foods/details.html:83
+msgid "OFF"
+msgstr ""
+
+#: templates/foods/details.html:114
+msgid "ADD TO CART"
+msgstr "THÊM VÀO GIỎ HÀNG"
+
+#: templates/foods/details.html:122
+msgid "PROCESS"
+msgstr "ĐĂNG NHẬP"
+
+#: templates/foods/details.html:140
+msgid "Average user rating"
+msgstr "Đánh giá trung bình của người dùng"
+
+#: templates/foods/details.html:156
+msgid "Rating breakdown"
+msgstr "Thống kê"
+
+#: templates/foods/details.html:180
+msgid "Leave your comment"
+msgstr "Hãy để lại nhận xét ở đây"
+
+#: templates/foods/details.html:184
+msgid "Comments"
+msgstr "Bình luận"
+
+#: templates/foods/details.html:185
+msgid "Add comment"
+msgstr "Thêm đánh giá"
+
+#: templates/foods/details.html:193 templates/foods/details.html:218
+msgid "profile"
+msgstr "Hồ sơ người dùng"
+
+#: templates/foods/details.html:209
+msgid "Reply"
+msgstr "Trả lời"
+
+#: templates/foods/details.html:210
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "phản hồi"
+
+#: templates/foods/details.html:235 templates/foods/details.html:271
+#: templates/layouts/footer.html:39
+msgid "Comment"
+msgstr "Nhận xét"
+
+#: templates/foods/details.html:243 templates/foods/details.html:279
+msgid "Submit comment"
+msgstr "Gửi"
+
+#: templates/foods/details.html:245
+msgid "Login to comment"
+msgstr "Đăng nhập để trả lời"
+
+#: templates/foods/details.html:259
+msgid "Rating"
+msgstr "Đánh giá"
+
+#: templates/foods/details.html:281
+msgid "Login to submit"
+msgstr "Đăng nhập để gửi"
+
 #: templates/index.html:6
 msgid "OnlineRestaurant | Home"
 msgstr "Trang chủ"
@@ -231,26 +313,25 @@ msgid "Customers' Top Picks"
 msgstr "Món ăn được ưa thích"
 
 #: templates/index.html:71
-#, fuzzy
-#| msgid "Search"
 msgid "Search Results"
-msgstr "Tìm kiếm"
+msgstr "Kết quả tìm kiếm"
 
 #: templates/index.html:75
 msgid "Your search"
-msgstr ""
+msgstr "Từ khóa"
 
 #: templates/index.html:77
 msgid "returned"
-msgstr ""
+msgstr "trả về"
 
-#: templates/index.html:77
+#: templates/index.html:79
 msgid "result"
-msgstr ""
+msgid_plural "results"
+msgstr[0] "kết quả"
 
-#: templates/index.html:87 templates/index.html:90
+#: templates/index.html:89 templates/index.html:92
 msgid "Food Image"
-msgstr ""
+msgstr "Ảnh món ăn"
 
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
 msgid "About"
@@ -267,10 +348,6 @@ msgstr "Nhóm 1"
 #: templates/layouts/footer.html:27
 msgid "HN_Naitei16_Python"
 msgstr ""
-
-#: templates/layouts/footer.html:39
-msgid "Comment"
-msgstr "Nhận xét"
 
 #: templates/layouts/footer.html:42
 msgid "Name"
@@ -328,14 +405,10 @@ msgstr "Đóng"
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: templates/layouts/side_navbar.html:5
-msgid "Home"
-msgstr "Trang chủ"
-
 #: templates/layouts/side_navbar.html:6
 msgid "Menu"
 msgstr "Thực đơn"
 
-#: views.py:29
+#: views.py:30
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"

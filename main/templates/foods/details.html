@@ -1,0 +1,292 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% translate "OnlineRestaurant" %} | {{ food.name }}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- breadcrumb -->
+    <div style="margin-top: 110px;"></div>
+    <ol class="breadcrumb" style="justify-content: center; text-align: center;">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">{% translate "Home" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ food.name }}</li>
+    </ol>
+    <!-- food detail -->
+    <div class="container">
+        <div class="row" style="padding-top: 15px;">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="bscard">
+                    <div class="row" style="display: flex; justify-content: center; height: 400px;">
+                        {% if food.image_set.all %}
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    {% for img in food.image_set.all %}
+                                        {% if forloop.counter == 1 %}
+                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                        {% else %}
+                                            <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}"></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox" style="width: 400px;">
+                                    {% for img in food.image_set.all %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="item active" style="transition-duration: 0.2s">
+                                                <a href="{{ img.url }}" ><img src="{{ img.url }}" class="d-block w-100" style="height: 400px;"></a>
+                                            </div>
+                                        {% else %}
+                                            <div class="item" style="transition-duration: 0.2s">
+                                                <a href="{{ img.url }}" ><img src="{{ img.url }}" class="d-block w-100" style="height: 400px;"></a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">{% translate "Previous" %}</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">{% translate "Next" %}</span>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="col-md-6  d-flex justify-content-center align-items-center">
+                                <img src="{% static 'img/default.jpeg' %}" class="img-fluid" style="height: 100%; width: auto;">
+                            </div>
+                        {% endif %}
+                        <div class="col-md-6" style="display: flex;">
+                            <div class="food p-4">
+                                <div class="mt-4 mb-3"> 
+                                    <div class="float-right d-inline">
+                                        <i class="fa fa-heart text-muted f-heart"></i>
+                                    </div>
+                                    <p class="h5 text-uppercase" style="font-size: x-large;"><b>{{ food.name }}</b></p>
+                                    <div class="price d-flex flex-row align-items-center">
+                                        <span class="act-price" style="font-size: 20px;">$ {{ food.price }}</span>
+                                        <!-- {% if food.discount %} -->
+                                            <div class="ml-2"> 
+                                                <small class="dis-price">{{ food.price }}</small>
+                                                <span>{{ food.discount }}% {% translate "OFF" %}</span> 
+                                            </div>
+                                        <!-- {% endif %} -->
+                                    </div>
+                                    <p style="margin: 15px 0px 20px;">
+                                        {% if food.avg_rating %}
+                                            {% for i in '12345'|make_list %}
+                                                {% if forloop.counter <= food.avg_rating %}
+                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                    </button>
+                                                {% else %}
+                                                    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                    </button>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <span class="far fa-star nf-star"></span>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <p class="about">{{ food.description }}</p>
+                                <div class="cart mt-4 align-items-center">
+                                    {% if user.is_authenticated %}
+                                        <form action="" method="POST" style="display: flex;">
+                                            {% csrf_token %}
+                                            <input id="cartitemno" class="tdinp" type="number" value="0" min="0" max="100">
+                                            <button class="btn btn-danger text-uppercase mr-2 px-4">
+                                                <a id="atc" type="submit" name="product_id" value="{{ food.id }}" style="color: #fff;">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                    <span> {% translate "ADD TO CART" %} </span>
+                                                </a>
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <a href="{% url 'login' %}">
+                                            <button class="btn btn-danger text-uppercase mr-2 px-4">
+                                                <i class="fas fa-cart-plus"></i>
+                                                <span style="font-family: 'Courier New', Courier, monospace; color: #fff; font-weight: bolder;">{% translate "PROCESS" %}</span>
+                                            </button>
+                                        </a>
+                                    {% endif %}    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- comment -->
+    <div class="container">
+        <div class="row" style="padding-top: 100px; display: flex; justify-content: center;">
+			<div class="col-sm-4">
+				<div class="rating-block">
+					<h4>{% translate "Average user rating" %}</h4>
+					<h2 class="bold padding-bottom-7">{{ food.avg_rating }} <small>/ 5</small></h2>
+                    {% for i in '12345'|make_list %}
+                        {% if forloop.counter <= food.avg_rating %}
+                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                        {% endif %}
+                    {% endfor %}
+				</div>
+			</div>
+			<div class="col-sm-4 col-sm-offset-1">
+				<h4>{% translate "Rating breakdown" %}</h4>
+                <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                    {% for key, value in rate_dict.items %}
+                        <div class="pull-left">
+                            <div class="pull-left" style="width:35px; line-height:1;">
+                                <div style="height:9px; margin:5px 0;">{{ key }} <span class="glyphicon glyphicon-star"></span></div>
+                            </div>
+                            <div class="pull-left" style="width:180px;">
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                <div 
+                                    class="progress-bar progress-bar-{{ value.0 }}" 
+                                    role="progressbar" aria-valuenow="{{ key }}" aria-valuemin="0" aria-valuemax="5" style="width: {{ value.2 }}%">
+                                </div>
+                                </div>
+                            </div>
+                            <div class="pull-right" style="margin-left:10px;">{{ value.1 }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+			</div>			
+		</div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1" id="logout">
+                <div class="page-header">
+                    <h3 class="reviews">{% translate "Leave your comment" %}</h3>
+                </div>
+                <div class="comment-tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><a href="#comments-logout" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">{% translate "Comments" %} <span class="badge">{{ food.review_set.all|length }}</span></h4></a></li>
+                        <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">{% translate "Add comment" %}</h4></a></li>
+                    </ul>            
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="comments-logout">                
+                            <ul class="media-list">
+                                {% for review in food.review_set.all %}
+                                    <li class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object img-circle" src="{% if review.user.avatar_url %}{{ review.user.avatar_url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="{% translate 'profile' %}">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="well well-lg">
+                                                <h4 class="media-heading text-uppercase reviews">{{ review.user }}</h4>
+                                                <p class="media-date text-uppercase reviews list-inline">{{ review.date_created }}</p>
+                                                <div class="review-block-rate">
+                                                    {% for i in '12345'|make_list %}
+                                                        {% if forloop.counter <= review.rating %}
+                                                            <span class="fas fa-star f-star"></span>
+                                                        {% else %}
+                                                            <span class="far fa-star nf-star"></span>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                <p class="media-comment">{{ review.comment }}</p>
+                                                <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#replyForm{{ review.id }}" id="reply"><span class="glyphicon glyphicon-share-alt"></span> {% translate "Reply" %}</a>
+                                                <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#reply{{ review.id }}"><span class="glyphicon glyphicon-comment"></span> {{ review.reply_set.all|length }} {% blocktranslate count count=review.reply_set.all|length %}comment{% plural %}comments{% endblocktranslate %}</a>
+                                            </div>              
+                                        </div>
+                                        <div class="collapse" id="reply{{ review.id }}">
+                                            <ul class="media-list">
+                                                {% for reply in review.reply_set.all %}
+                                                    <li class="media media-replied">
+                                                        <a class="pull-left" href="#">
+                                                            <img class="media-object img-circle" src="{% if reply.user.avatar_url %}{{ reply.user.avatar_url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="{% translate 'profile' %}">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <div class="well well-lg">
+                                                                <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> {{ reply.user }}</h4>
+                                                                <div class="media-date text-uppercase reviews list-inline">{{ reply.date_created }}</div><br>
+                                                                <p class="media-comment">{{ reply.content }}</p>
+                                                            </div>              
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>  
+                                        </div>
+                                        <div class="collapse" id="replyForm{{ review.id }}">
+                                            <form action="#" method="post" class="form-horizontal" role="form">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="email" class="col-sm-2 control-label">{% translate "Comment" %}</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        {% if user.is_authenticated %}
+                                                            <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span>{% translate "Submit comment" %}</button>
+                                                        {% else %}
+                                                            <a href="{% url 'login' %}" class="btn btn-success btn-circle text-uppercase" ><span class="glyphicon glyphicon-send"></span>{% translate "Login to comment" %}</a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>            
+                                            </form>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul> 
+                        </div>
+                        <div class="tab-pane" id="add-comment">
+                            <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">{% translate "Rating" %}</label>
+                                    <div class="col-sm-10">
+                                        <div class="starrating risingstar">
+                                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
+                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
+                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
+                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
+                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">{% translate "Comment" %}</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        {% if user.is_authenticated %}
+                                            <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> {% translate "Submit comment" %}</button>
+                                        {% else %}
+                                            <a href="{% url 'login' %}" class="btn btn-success btn-circle text-uppercase" ><span class="glyphicon glyphicon-send"></span>{% translate "Login to submit" %}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

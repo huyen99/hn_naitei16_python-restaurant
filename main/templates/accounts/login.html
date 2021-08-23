@@ -18,6 +18,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="{% translate 'Submit' %}">
+        <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER|default:''|slice:'-7:-1' != 'logout' %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
     </form>
     <a href="{% url 'password_reset' %}">{% translate "Forgot Password?" %}</a>
     <p class="text-muted">

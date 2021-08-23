@@ -3,8 +3,10 @@ from django.db.models.deletion import SET_NULL
 from django.db.models.fields import BooleanField, SmallIntegerField, TextField
 from django.urls import reverse
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from datetime import date
+from django.core.validators import MaxValueValidator, MinValueValidator 
+from django.utils import timezone
 import uuid
+import collections
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -50,7 +52,7 @@ class UserManager(BaseUserManager):
 
 class Notify(models.Model):
     message = models.TextField()
-    created_date = models.DateTimeField()
+    created_date = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
     duration = models.TimeField(null=True, blank=True)
     
@@ -72,7 +74,7 @@ class User(AbstractUser):
 
     def __str__(self):
         """String for representing the User Model object."""
-        return f'{self.last_name},{self.first_name}'""
+        return f'{self.last_name}, {self.first_name}' if self.last_name and self.first_name else self.username
         
 class Food(models.Model):
     name = models.CharField(max_length=45)
@@ -80,7 +82,6 @@ class Food(models.Model):
     price = models.FloatField()
     discount = models.FloatField(null=True, blank=True)
     order_count = models.IntegerField(default=0)
-    rating = models.FloatField(default=0)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -91,9 +92,19 @@ class Food(models.Model):
 
 class Review(models.Model):
     comment = models.TextField()
-    rating = models.SmallIntegerField()
+    rating = models.SmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     user = models.ForeignKey('User', on_delete=models.CASCADE, null=True)
     food = models.ForeignKey('Food', on_delete=models.CASCADE, null=True)
+    date_created = models.DateTimeField(default=timezone.now)
+    
+class Reply(models.Model):
+    user = models.ForeignKey('User', on_delete=models.CASCADE, null=True)
+    parent = models.ForeignKey('Review', on_delete=models.CASCADE, null=True)
+    content = models.TextField()
+    date_created = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        verbose_name_plural = "replies"
 
 class Image(models.Model):
     food = models.ForeignKey('Food', on_delete=models.CASCADE, null=True, blank=True)
