@@ -38,7 +38,6 @@ document.getElementById("toggle_open_nav").onclick = openNav;
 
 document.getElementById("toggle_close_nav").onclick = closeNav;
 
-console.log(window.location);
 if (window.location.search.includes('query')) {
     element = document.getElementById("search-result") ? document.getElementById("search-result") : document.getElementById("menu");
     element.scrollIntoView();
@@ -66,3 +65,20 @@ $(document).ready(function(){
         return false; 
     });
 });
+
+function toggleCart(y){
+    x = y.getElementsByTagName("i")[0]
+    z = y.getElementsByTagName("span")[0]
+    if(x.classList.contains('fa-check-circle'))
+    {
+        x.classList.remove('fa-check-circle')
+        x.classList.add('fa-cart-plus')
+        z.innerText = "ADD TO CART"
+    }
+    else
+    {
+        x.classList.remove('fa-cart-plus')
+        x.classList.add('fa-check-circle')
+        z.innerText = "REMOVE FROM CART"
+    } 
+}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Notify, User, Food, Review, Image, Coupon, Status, Bill, Item
+from .models import Notify, User, Food, Review, Image, Coupon, Status, Bill, Item, Reply
 
 admin.site.register(Status)
 
@@ -16,12 +16,16 @@ class ImageInline(admin.TabularInline):
 
 @admin.register(Food)
 class Food(admin.ModelAdmin):
-    list_display = ('name', 'price', 'description', 'discount', 'order_count', 'rating')
+    list_display = ('name', 'price', 'description', 'discount', 'order_count')
     inlines = [ImageInline]
+
+class ReplyInline(admin.TabularInline):
+    model = Reply
 
 @admin.register(Review)
 class Review(admin.ModelAdmin):
     list_display = ('user', 'food', 'rating', 'comment')
+    inlines = [ReplyInline]
 
 @admin.register(Coupon)
 class Coupon(admin.ModelAdmin):

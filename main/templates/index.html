@@ -72,9 +72,11 @@
         </div>
 
         <ul class="breadcrumb">
-            <em>{% translate "Your search" %} 
-                <b style="font-family: sans-serif; font-size: x-large;">{{ keyword }}</b> 
-                {% translate "returned" %} {{ res|length }} {% translate "result" %}{{ res|length|pluralize }}
+            <em>{% translate "Your search" %}
+                <b class="searchResult">{{ keyword }}</b>
+                {% translate "returned" %}
+                <b class="searchResult">{{ foods|length }}</b>
+                {% blocktranslate count count=foods|length %}result{% plural %}results{% endblocktranslate %}
             </em>
         </ul>
     {% endif %}
@@ -101,18 +103,18 @@
                 <div class="container">
                     <h4 class="foodName">
                         {{ food.name }}
-                        <a style="margin-left: 10px;" href=""><i class="fas fa-external-link-alt "></i></a>
+                        <a class="foodLink" href="{% url 'food-details' food.id %}"><i class="fas fa-external-link-alt "></i></a>
                         <i class="far fa-heart nf-heart"></i>
                     </h4>
                     <p>
-                        {% if food.rating == 0 %}
-                            <span class="far fa-star nf-star"></span>
-                        {% else %}
+                        {% if food.avg_rating %}
                             {% for i in '12345'|make_list %}
-                                {% if forloop.counter <= food.rating %}
+                                {% if forloop.counter <= food.avg_rating %}
                                     <span class="fas fa-star f-star"></span>
                                 {% endif %}
                             {% endfor %}
+                        {% else %}
+                            <span class="far fa-star nf-star"></span>
                         {% endif %}
                     </p>
                     <p class="c-subtext">${{ food.price }}</p>
