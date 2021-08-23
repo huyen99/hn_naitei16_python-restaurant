@@ -912,6 +912,15 @@ ul.breadcrumb {
     text-align: center;
 }
 
+ol.breadcrumb {
+    justify-content: center;
+    text-align: center;
+}
+
+.breadcrumb-margin {
+    margin-top: 110px;
+}
+
 b.searchResult {
     font-size: x-large;
     font-family: sans-serif;
@@ -933,7 +942,8 @@ b.searchResult {
 
 .act-price {
     color: red;
-    font-weight: 700
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .dis-price {
@@ -958,6 +968,12 @@ b.searchResult {
     box-shadow: none
 }
 
+.btn-danger span {
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    font-weight: bolder;
+}
+
 .cart i {
     margin-right: 10px
 }
@@ -966,6 +982,49 @@ b.searchResult {
   font-size: 16px;
   display: inline;
   float: left;
+  color: #fff;
+}
+
+.detail-wrap {
+    padding-top: 15px;
+}
+
+.card-wrap {
+    display: flex;
+    justify-content: center;
+    height: 400px;
+}
+
+.slide-wrap {
+    width: 400px !important;
+}
+
+.slide-item {
+    transition-duration: 0.2s !important;
+}
+
+.slide-img {
+    height: 400px !important;
+}
+
+.default-img {
+    height: 100%; width: auto;
+}
+
+.info-wrap {
+    display: flex;
+}
+
+.detail-name {
+    font-size: x-large;
+}
+
+.star-wrap {
+    margin: 15px 0px 20px;
+}
+
+.add-to-cart {
+    display: flex;
 }
 
 /* STARS RATING */
@@ -1003,15 +1062,47 @@ b.searchResult {
 
 .rating-block{
 	background-color: #FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px 15px 20px 15px;
-	border-radius:3px;
+	border: 1px solid #EFEFEF;
+	padding: 15px 15px 20px 15px;
+	border-radius: 3px;
     text-align: center;
 }
 
 /* COMMENT */
 
-.bold{
+.comment-wrap {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.count-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.count-key {
+    width: 35px;
+    line-height: 1;
+    height: 9px;
+    margin: 5px 0;
+}
+
+.count-progress {
+    width: 180px;
+}
+
+.count-row {
+    height: 9px !important;
+    margin: 8px 0 !important;
+}
+
+.count-value {
+    margin-left: 10px;
+}
+
+.bold {
 	font-weight:700;
 }
 
@@ -1021,34 +1112,34 @@ b.searchResult {
 
 .review-block{
 	background-color: #FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px;
-	border-radius:3px;
-	margin-bottom:15px;
+	border: 1px solid #EFEFEF;
+	padding: 15px;
+	border-radius: 3px;
+	margin-bottom: 15px;
 }
 
 .review-block-name{
-	font-size:12px;
-	margin:10px 0;
+	font-size: 12px;
+	margin: 10px 0;
 }
 
 .review-block-date{
-	font-size:12px;
+	font-size: 12px;
 }
 
 .review-block-rate{
-	font-size:13px;
-	margin-bottom:15px;
+	font-size: 13px;
+	margin-bottom: 15px;
 }
 
 .review-block-title{
-	font-size:15px;
-	font-weight:700;
-	margin-bottom:10px;
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 10px;
 }
 
 .review-block-description{
-	font-size:13px;
+	font-size: 13px;
 }
 
 .page-header {
