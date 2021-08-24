@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import uuid
 import collections
 
@@ -75,7 +77,14 @@ class User(AbstractUser):
     def __str__(self):
         """String for representing the User Model object."""
         return f'{self.last_name}, {self.first_name}' if self.last_name and self.first_name else self.username
-        
+
+@receiver(post_save, sender=User)
+def create_cart(sender, instance, created, **kwargs):
+    # Create a bill with `cart` status for new user
+    if created:
+        status, notExist = Status.objects.get_or_create(name='cart')
+        Bill.objects.create(user=instance, status=status)
+
 class Food(models.Model):
     name = models.CharField(max_length=45)
     description = models.TextField(null=True, blank=True)
@@ -126,7 +135,8 @@ class Coupon(models.Model):
         return self.code
 
 class Status(models.Model):
-    name = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(unique=True, null=True, max_length=50)
+    description = models.CharField(null=True, blank=True, max_length=255)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -137,8 +147,8 @@ class Status(models.Model):
 
 class Bill(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    total = models.FloatField()
-    order_date = models.DateTimeField()
+    total = models.FloatField(default=0)
+    order_date = models.DateTimeField(default=timezone.now)
     received_date = models.DateTimeField(null=True, blank=True)
     recipient = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=12)
@@ -150,7 +160,7 @@ class Bill(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.id
+        return str(self.id)
 
 class Item(models.Model):
     unit_price = models.FloatField()

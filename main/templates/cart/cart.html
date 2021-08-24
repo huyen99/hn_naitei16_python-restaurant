@@ -1,0 +1,110 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Cart" %}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block content %}
+
+    <!-- FIRST PART -->
+    <div class="m-jumbo">
+        <h2 class="p2-heading"><i class="fas fa-shopping-cart"></i> {% translate "Cart" %}</h2>
+    </div>
+
+    <!-- SECOND PART -->
+    <!-- Cart -->
+    {% if items %}
+        <div class="cart-wrap">
+            <div class="shpcart">
+                <table id="shptable">
+                    <tr>
+                        <th class="thsplft"></th>
+                        <th>{% translate "Item" %}</th>
+                        <th>{% translate "Price" %}</th> 
+                        <th>{% translate "Quantity" %}</th>
+                        <th>{% translate "Total" %}</th>
+                        <th>{% translate "Remove" %}</th>
+                    </tr>
+                    <tbody id="all_foods">
+                        {% for item in items %}
+                            <tr>
+                                <td class="shpimg">
+                                    {% if item.food.image_set.all %}
+                                        <img src="{{ item.food.image_set.all.0.url }}" alt="{% translate 'Food Image' %}">
+                                    {% else %}
+                                        <img src="{% static 'img/default.jpeg' %}" alt="{% translate 'Food Image' %}">
+                                    {% endif %}
+        
+                                </td>
+                                <td>
+                                    <div>
+                                        {{ item.food.name }}
+                                        <a class="ref-link" href="{% url 'food-details' item.food.id %}"><i class="fas fa-external-link-alt "></i></a>
+                                    </div>
+                                    <!-- <div class="pid" hidden>{{ item.food.id }}</div> -->
+                                </td>
+                                <td>{{ item.food.price }}</td>
+                                <td class="quantity">
+                                    <input id="cartitemno" class="tdinp" type="number" value="{{ item.quantity }}" min="1" max="100">
+                                </td>
+                                <td>{{ item.food.price }}</td>
+                                <td>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <button class="remove-button" title="Remove from Cart" type="submit" name="food_id" >
+                                            <i class="fas fa-trash-alt f-heart"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                    <tr>
+                        <td class="thsplft"></td>
+                        <td></td>
+                        <td></td>
+                        <td id="total_quantity"></td>
+                        <td id="total_display"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div class="shpcheckout-wrap">
+                <div class="shpcheckout">
+                    <h3>{% translate "Order Summary:" %}</h3>
+                    <hr>
+                    <span>
+                        <div class="space"><i class="fas fa-check-square"></i> {% translate "Item Subtotal:" %}</div>
+                        <span id="total_display2"></span></span>
+                    <span class="blur">
+                        <div class="space"><i class="fas fa-check-square"></i> {% translate "Delivery Fee:" %}</div>
+                        <span id="delv_charges"></span></span> 
+                    <span>
+                        <div class="space"><i class="fas fa-check-square"></i> {% translate "Amount to be paid:" %}</div>
+                        <span id="endtotal_display"></span>
+                    </span>
+                    <div>
+                        <a href="{% url 'index' %}">{% translate "Continue Shopping" %}</a>
+                        <a>{% translate "Checkout" %}</a>
+                    </div>
+                </div>
+            </div>
+    
+            <form hidden id="checkoutfs" action="" method="post">
+                {% csrf_token %}
+                <input name="checkoutip" value="" type="text">
+            </form>
+        </div>
+    {% else %}
+        <p style="text-align: center;"><em>{% translate "There are no items in your cart." %}</em></p>
+    {% endif %}
+
+{% endblock %}
