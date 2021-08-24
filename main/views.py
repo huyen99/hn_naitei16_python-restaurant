@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Avg, Q
 import functools
-from .models import Food
+import copy
+from .models import Food, Review, Reply
 from .forms import UserRegisterForm
-from .utils.constant import RATE_TEMPLATE as _rate
+from .utils.constant import RATE_TEMPLATE
 
 def index(request):
     foods = Food.objects.prefetch_related('image_set').annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')
@@ -42,6 +45,9 @@ def register(request):
 def food_details(request, id):
     food = Food.objects.prefetch_related('review_set').annotate(avg_rating=Avg('review__rating')).filter(id=id).first()
     
+    # Copy constant to another dict to reset dict value on page refresh
+    _rate = copy.deepcopy(RATE_TEMPLATE)
+    
     # How many reviews per star?
     for review in food.review_set.all():
         i = review.rating
@@ -54,3 +60,42 @@ def food_details(request, id):
         "rate_dict": _rate,
     }
     return render(request, 'foods/details.html', context)
+
+@login_required
+def review(request, id):
+    if request.method == 'POST':
+        user = request.user
+        food = Food.objects.prefetch_related('review_set').filter(id=id).first()
+        comment = request.POST.get('comment').strip()
+        rating = request.POST.get('rating')
+        
+        if not comment or int(rating) == 0:
+            review_id = -1
+        else:
+            review = Review.objects.create(comment=comment, rating=rating, user=user, food=food)
+            review_id = review.id
+
+        context = {
+            "review_id": review_id,
+        }
+
+        return JsonResponse(context)
+        
+@login_required
+def reply(request, food_id, review_id):
+    if request.method == 'POST':
+        user = request.user
+        parent = Review.objects.prefetch_related('reply_set').filter(id=review_id).first()
+        content = request.POST.get('content').strip()
+
+        if not content:
+            reply_id = -1
+        else:
+            reply = Reply.objects.create(content=content, parent=parent, user=user)
+            reply_id = reply.id
+
+        context = {
+            "reply_id": reply_id,
+        }
+
+        return JsonResponse(context)
