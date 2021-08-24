@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models import Avg, Q
 import functools
 import copy
-from .models import Food, Review, Reply
+from .models import Food, Review, Reply, Bill, Item, Status
 from .forms import UserRegisterForm
 from .utils.constant import RATE_TEMPLATE
 
@@ -99,3 +99,14 @@ def reply(request, food_id, review_id):
         }
 
         return JsonResponse(context)
+
+@login_required
+def cart(request):
+    status = get_object_or_404(Status, name='cart')
+    bill = Bill.objects.prefetch_related('item_set').filter(status=status).first()
+    
+    context = {
+        "cart": bill,
+        "items": bill.item_set.all
+    }
+    return render(request, 'cart/cart.html', context)

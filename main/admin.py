@@ -1,15 +1,13 @@
 from django.contrib import admin
 from .models import Notify, User, Food, Review, Image, Coupon, Status, Bill, Item, Reply
 
-admin.site.register(Status)
-
 @admin.register(Notify)
 class Notify(admin.ModelAdmin):
     list_display = ('message', 'is_active', 'duration', 'created_date')
 
 @admin.register(User)
 class User(admin.ModelAdmin):
-    list_display = ('email', 'last_name', 'first_name', 'phone_number', 'address', 'is_admin', 'is_staff', 'is_active')
+    list_display = ('email', 'last_name', 'first_name', 'is_admin', 'is_staff', 'is_active')
 
 class ImageInline(admin.TabularInline):
     model = Image
@@ -36,5 +34,9 @@ class ItemInline(admin.TabularInline):
 
 @admin.register(Bill)
 class Bill(admin.ModelAdmin):
-    list_display = ('id', 'recipient', 'status', 'total', 'phone_number', 'address', 'order_date', 'received_date', 'coupon', 'shipping_note')
+    list_display = ('id', 'user', 'status', 'total', 'order_date', 'received_date')
     inlines = [ItemInline]
+
+@admin.register(Status)
+class Status(admin.ModelAdmin):
+    list_display = ('name', 'description')

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 03:50+0700\n"
+"POT-Creation-Date: 2021-08-24 08:44+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,6 +178,67 @@ msgstr "Đã có tài khoản?"
 msgid "Sign In"
 msgstr "Đăng nhập"
 
+#: templates/cart/cart.html:6
+msgid "OnlineRestaurant | Cart"
+msgstr "Giỏ hàng"
+
+#: templates/cart/cart.html:17 templates/layouts/navbar.html:16
+msgid "Cart"
+msgstr "Giỏ hàng"
+
+#: templates/cart/cart.html:28
+msgid "Item"
+msgstr "Món ăn"
+
+#: templates/cart/cart.html:29
+msgid "Price"
+msgstr "Giá"
+
+#: templates/cart/cart.html:30
+msgid "Quantity"
+msgstr "Số lượng"
+
+#: templates/cart/cart.html:31
+msgid "Total"
+msgstr "Tổng"
+
+#: templates/cart/cart.html:32
+msgid "Remove"
+msgstr "Xóa"
+
+#: templates/cart/cart.html:39 templates/cart/cart.html:41
+#: templates/index.html:89 templates/index.html:92
+msgid "Food Image"
+msgstr "Ảnh món ăn"
+
+#: templates/cart/cart.html:82
+msgid "Order Summary:"
+msgstr "Thông tin đơn hàng:"
+
+#: templates/cart/cart.html:84
+msgid "Item Subtotal:"
+msgstr "Giá tạm tính:"
+
+#: templates/cart/cart.html:86
+msgid "Delivery Fee:"
+msgstr "Phí vận chuyển:"
+
+#: templates/cart/cart.html:87
+msgid "Amount to be paid:"
+msgstr "Cần thanh toán:"
+
+#: templates/cart/cart.html:89
+msgid "Continue Shopping"
+msgstr "Tiếp tục mua sắm"
+
+#: templates/cart/cart.html:90
+msgid "Checkout"
+msgstr "Thanh toán"
+
+#: templates/cart/cart.html:101
+msgid "There are no items in your cart."
+msgstr "Hiện không có sản phẩm nào trong giỏ hàng."
+
 #: templates/foods/details.html:6
 msgid "OnlineRestaurant"
 msgstr ""
@@ -329,10 +390,6 @@ msgid "result"
 msgid_plural "results"
 msgstr[0] "kết quả"
 
-#: templates/index.html:89 templates/index.html:92
-msgid "Food Image"
-msgstr "Ảnh món ăn"
-
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
 msgid "About"
 msgstr "Thông tin"
@@ -381,10 +438,6 @@ msgstr "Xin chào"
 msgid "Profile"
 msgstr "Hồ sơ người dùng"
 
-#: templates/layouts/navbar.html:16
-msgid "Cart"
-msgstr "Giỏ hàng"
-
 #: templates/layouts/navbar.html:17
 msgid "My Orders"
 msgstr "Đơn của tôi"
@@ -409,6 +462,6 @@ msgstr "Tìm kiếm"
 msgid "Menu"
 msgstr "Thực đơn"
 
-#: views.py:30
+#: views.py:37
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"

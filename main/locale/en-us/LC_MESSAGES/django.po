@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 03:50+0700\n"
+"POT-Creation-Date: 2021-08-24 08:44+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,6 +170,67 @@ msgstr ""
 msgid "Sign In"
 msgstr ""
 
+#: templates/cart/cart.html:6
+msgid "OnlineRestaurant | Cart"
+msgstr ""
+
+#: templates/cart/cart.html:17 templates/layouts/navbar.html:16
+msgid "Cart"
+msgstr ""
+
+#: templates/cart/cart.html:28
+msgid "Item"
+msgstr ""
+
+#: templates/cart/cart.html:29
+msgid "Price"
+msgstr ""
+
+#: templates/cart/cart.html:30
+msgid "Quantity"
+msgstr ""
+
+#: templates/cart/cart.html:31
+msgid "Total"
+msgstr ""
+
+#: templates/cart/cart.html:32
+msgid "Remove"
+msgstr ""
+
+#: templates/cart/cart.html:39 templates/cart/cart.html:41
+#: templates/index.html:89 templates/index.html:92
+msgid "Food Image"
+msgstr ""
+
+#: templates/cart/cart.html:82
+msgid "Order Summary:"
+msgstr ""
+
+#: templates/cart/cart.html:84
+msgid "Item Subtotal:"
+msgstr ""
+
+#: templates/cart/cart.html:86
+msgid "Delivery Fee:"
+msgstr ""
+
+#: templates/cart/cart.html:87
+msgid "Amount to be paid:"
+msgstr ""
+
+#: templates/cart/cart.html:89
+msgid "Continue Shopping"
+msgstr ""
+
+#: templates/cart/cart.html:90
+msgid "Checkout"
+msgstr ""
+
+#: templates/cart/cart.html:101
+msgid "There are no items in your cart."
+msgstr ""
+
 #: templates/foods/details.html:6
 msgid "OnlineRestaurant"
 msgstr ""
@@ -323,10 +384,6 @@ msgid_plural "results"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/index.html:89 templates/index.html:92
-msgid "Food Image"
-msgstr ""
-
 #: templates/layouts/footer.html:22 templates/layouts/side_navbar.html:7
 msgid "About"
 msgstr ""
@@ -375,10 +432,6 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: templates/layouts/navbar.html:16
-msgid "Cart"
-msgstr ""
-
 #: templates/layouts/navbar.html:17
 msgid "My Orders"
 msgstr ""
@@ -403,6 +456,6 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: views.py:30
+#: views.py:37
 msgid "Your account has been created! You can login now"
 msgstr ""
