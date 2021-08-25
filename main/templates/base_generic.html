@@ -29,7 +29,7 @@
     <!-- MAIN BODY -->
     <main>
         {% if messages %}
-            <div class="msgmessages">
+            <div class="mynavbar msgmessages">
                 {% for message in messages %}
                     <div class="alertmsg {% if message.tags %} alertmsg-{{message.tags}} {% else %} alertmsg-def {% endif %} ">
                         <span class="closebtnmsg">&times;</span>  

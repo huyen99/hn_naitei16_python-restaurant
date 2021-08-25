@@ -147,3 +147,14 @@ def add_to_cart(request):
     }
 
     return JsonResponse(context)
+
+@login_required
+def remove_from_cart(request, id):
+    success = False
+    if get_object_or_404(Item, id=id).delete():
+        success = True
+    
+    context = {
+        "success": success,
+    }
+    return JsonResponse(context)

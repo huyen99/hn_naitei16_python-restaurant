@@ -33,7 +33,7 @@
                     </tr>
                     <tbody id="all_foods">
                         {% for item in items %}
-                            <tr>
+                            <tr id="tb-row-{{ item.id }}">
                                 <td class="shpimg">
                                     {% if item.food.image_set.all %}
                                         <img src="{{ item.food.image_set.all.0.url }}" alt="{% translate 'Food Image' %}">
@@ -55,9 +55,9 @@
                                 </td>
                                 <td>{{ item.food.price }}</td>
                                 <td>
-                                    <form action="" method="POST">
+                                    <form action="" id="remove-button-{{ item.id }}" data-token="{{ csrf_token }}" value="{{ item.id }}" name="{{ item.food.name }}" method="POST">
                                         {% csrf_token %}
-                                        <button class="remove-button" title="Remove from Cart" type="submit" name="food_id" >
+                                        <button class="remove-button" title="Remove from Cart" type="submit" name="item_id" >
                                             <i class="fas fa-trash-alt f-heart"></i>
                                         </button>
                                     </form>
@@ -92,7 +92,7 @@
                         <span id="endtotal_display"></span>
                     </span>
                     <div>
-                        <a href="{% url 'index' %}">{% translate "Continue Shopping" %}</a>
+                        <a href="{% url 'index' %}#menu">{% translate "Continue Shopping" %}</a>
                         <a>{% translate "Checkout" %}</a>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
             </form>
         </div>
     {% else %}
-        <p style="text-align: center;"><em>{% translate "There are no items in your cart." %}</em></p>
+        <p class="cart-empty"><em>{% translate "There are no items in your cart." %}</em></p>
     {% endif %}
 
 {% endblock %}
