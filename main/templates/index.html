@@ -92,9 +92,13 @@
                     <img src="{% static 'img/default.jpeg' %}" alt="{% translate 'Food Image' %}" style="width:100%">
                 {% endfor %}
                 <div class="middle">
-                    <div class="text">
+                    <div id="cart-section-{{ food.id }}" class="text">
                         {% if user.is_authenticated %}
-                            <i class="fas fa-cart-plus"></i>
+                            {% if food in in_cart %}
+                                <a id="atc" type="submit" data-token="{{ csrf_token }}" name="food_id" value="{{ food.id }}" ><i class="fas fa-check-circle"></i></a>
+                            {% else %}
+                                <a id="atc" type="submit" data-token="{{ csrf_token }}" name="food_id" value="{{ food.id }}" ><i class="fas fa-cart-plus"></i></a>
+                            {% endif %}
                         {% else %}
                             <a href="{% url 'login' %}"><i class="fas fa-cart-plus"></i>{% translate "Login" %}</a>
                         {% endif %}
