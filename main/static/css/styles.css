@@ -1396,3 +1396,7 @@ input[type="file"]{
 .space {
     white-space: nowrap;
 }
+
+p.cart-empty {
+    text-align: center !important;
+}

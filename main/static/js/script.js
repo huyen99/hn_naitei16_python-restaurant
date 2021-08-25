@@ -148,10 +148,12 @@ $(document).ready(function(){
     $(window).resize(function() {
         var element = document.querySelector(".about");
         var description = $(element).data('about');
-        if (description.length > 50 && $(window).width() < 1000) {
-            element.innerHTML = description.substring(0, description.indexOf(' ', 50)) + "...";
+        if (description) {
+            if (description.length > 50 && $(window).width() < 1000) {
+                element.innerHTML = description.substring(0, description.indexOf(' ', 50)) + "...";
+            }
+            else element.innerHTML = description;
         }
-        else element.innerHTML = description;
     });
 
     // TOGGLE ADD TO CART ICON IN HOMEPAGE
@@ -212,6 +214,38 @@ $(document).ready(function(){
         });
     });
     
+    // REMOVE FROM CART ON CLICK REMOVE BUTTON
+    $(document).on('click', '[id^="remove-button"]', function(e){
+        e.preventDefault();
+        var token = $(this).data('token');
+        var item_id = $(this).attr('value');
+        var item_name = $(this).attr('name');
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + lang + 'remove-from-cart/' + item_id,
+            data: {
+                'item': item_name,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function(rs){
+                if (rs.success) {
+                    $('#tb-row-'+item_id).remove();
+                    var container = document.getElementsByClassName('quantity');
+                    for(var i=0; i<container.length; i++) {
+                        changeSubtotalOnLoad(container[i]);
+                    }
+                    total();
+                }
+            },
+            error: function(rs, e){
+                console.log("Error");
+            },
+        });
+    });
+    
     // CHANGE SUBTOTAL ON CART'S QUANTITY UPDATE
     document.querySelectorAll(".quantity").forEach(qty => qty.addEventListener("change", changeSubtotal));
     document.querySelector('body').onload = function() {
@@ -250,6 +284,7 @@ $(document).ready(function(){
         var sum = 0;
         var noitems = 0;
         var tbody = document.getElementById("all_foods");
+        if (!tbody) return;
 
         for (var i = 0; i < tbody.rows.length; i++) {
             sum = sum + parseFloat(tbody.rows[i].cells[4].innerHTML);
