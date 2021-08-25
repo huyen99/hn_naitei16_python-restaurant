@@ -11,6 +11,16 @@ from .models import Food, Review, Reply, Bill, Item, Status
 from .forms import UserRegisterForm
 from .utils.constant import RATE_TEMPLATE
 
+def get_cart(request):
+    bill, cart_items, in_cart = None, None, []
+    if request.user.is_authenticated:
+        status = get_object_or_404(Status, name='cart')
+        bill = Bill.objects.prefetch_related('item_set').filter(user=request.user, status=status).first()
+        cart_items = bill.item_set.all()
+        in_cart = [item.food for item in bill.item_set.all()]
+    
+    return bill, cart_items, in_cart
+
 def index(request):
     foods = Food.objects.prefetch_related('image_set').annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')
     query = ''
@@ -21,9 +31,12 @@ def index(request):
         # Search for each keyword in query. For example: "sushi pizza"
         foods = foods.filter(functools.reduce(lambda x, y: x | y, [Q(name__icontains=word) for word in keywords]))
 
+    bill, _, in_cart = get_cart(request)
+
     context = {
         "foods": foods,
-        "keyword": query
+        "keyword": query,
+        "in_cart": in_cart
     }
     return render(request, 'index.html', context)
 
@@ -44,7 +57,8 @@ def register(request):
     
 def food_details(request, id):
     food = Food.objects.prefetch_related('review_set').annotate(avg_rating=Avg('review__rating')).filter(id=id).first()
-    
+    _, _, in_cart = get_cart(request)
+
     # Copy constant to another dict to reset dict value on page refresh
     _rate = copy.deepcopy(RATE_TEMPLATE)
     
@@ -58,6 +72,7 @@ def food_details(request, id):
     context = {
         "food": food,
         "rate_dict": _rate,
+        "in_cart": in_cart
     }
     return render(request, 'foods/details.html', context)
 
@@ -102,11 +117,33 @@ def reply(request, food_id, review_id):
 
 @login_required
 def cart(request):
-    status = get_object_or_404(Status, name='cart')
-    bill = Bill.objects.prefetch_related('item_set').filter(status=status).first()
+    bill, cart_items, _ = get_cart(request)
     
     context = {
         "cart": bill,
-        "items": bill.item_set.all
+        "items": cart_items
     }
     return render(request, 'cart/cart.html', context)
+
+@login_required
+def add_to_cart(request):
+    bill, cart_items, _ = get_cart(request)
+    food = get_object_or_404(Food, id=request.POST.get('id'))
+    action = ''
+
+    if cart_items.filter(food=food).exists():
+        get_object_or_404(Item, food=food, bill=bill).delete()
+        action = 'remove'
+    else:
+        if food.discount:
+            unit_price = float(food.price) * float(food.discount)
+        else:
+            unit_price = food.price
+        Item.objects.create(food=food, bill=bill, quantity=1, unit_price=unit_price)
+        action = 'add'
+
+    context = {
+        "action": action,
+    }
+
+    return JsonResponse(context)

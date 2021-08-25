@@ -145,21 +145,72 @@ $(document).ready(function(){
         localStorage.clear();
     }
 
-    // TOGGLE ADD TO CART ICON
-    function toggleCart(y){
-        x = y.getElementsByTagName("i")[0]
-        z = y.getElementsByTagName("span")[0]
-        if (x.classList.contains('fa-check-circle')) {
+    $(window).resize(function() {
+        var element = document.querySelector(".about");
+        var description = $(element).data('about');
+        if (description.length > 50 && $(window).width() < 1000) {
+            element.innerHTML = description.substring(0, description.indexOf(' ', 50)) + "...";
+        }
+        else element.innerHTML = description;
+    });
+
+    // TOGGLE ADD TO CART ICON IN HOMEPAGE
+    function toggleCartHome(y){
+        x = y.getElementsByTagName("i")[0];
+        if(x.classList.contains('fa-check-circle'))
+        {
             x.classList.remove('fa-check-circle')
             x.classList.add('fa-cart-plus')
-            z.innerText = "ADD TO CART"
         }
-        else {
+        else
+        {
             x.classList.remove('fa-cart-plus')
             x.classList.add('fa-check-circle')
-            z.innerText = "REMOVE FROM CART"
         } 
     }
+    
+    // TOGGLE ADD TO CART ICON IN DETAIL PAGE
+    function toggleCartDetail(y){
+        x = y.getElementsByTagName("i")[0];
+        z = y.getElementsByTagName("span")[0];
+        if (x.classList.contains('fa-check-circle')) {
+            x.classList.remove('fa-check-circle');
+            x.classList.add('fa-cart-plus');
+            z.innerText = gettext("ADD TO CART");
+        }
+        else {
+            x.classList.remove('fa-cart-plus');
+            x.classList.add('fa-check-circle');
+            z.innerText = gettext("REMOVE FROM CART");
+        } 
+    }
+    
+    // ADD OR REMOVE FROM CART ON POST REQUEST
+    $(document).on('click', '[id^="atc"]', function(e){
+        e.preventDefault();
+        var icon = e.currentTarget;
+        var id = this.id;
+        var token = $(this).data('token');
+        var food_id = $(this).attr('value');
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + lang + 'add-to-cart/',
+            data: {
+                'id': food_id,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function(rs){
+                if (id == "atc-detail") toggleCartDetail(icon);
+                else toggleCartHome(icon);
+            },
+            error: function(rs, e){
+                console.log("Error");
+            },
+        });
+    });
     
     // CHANGE SUBTOTAL ON CART'S QUANTITY UPDATE
     document.querySelectorAll(".quantity").forEach(qty => qty.addEventListener("change", changeSubtotal));
