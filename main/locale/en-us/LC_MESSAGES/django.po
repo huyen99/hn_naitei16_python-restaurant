@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-25 08:22+0700\n"
+"POT-Creation-Date: 2021-08-26 11:18+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,12 @@ msgstr ""
 msgid "Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
 msgstr ""
 
-#: forms.py:12
+#: forms.py:12 templates/accounts/profile.html:192
 msgid "Phone number"
 msgstr ""
 
-#: forms.py:13
+#: forms.py:13 templates/accounts/profile.html:183
+#: templates/accounts/profile.html:184
 msgid "Address"
 msgstr ""
 
@@ -148,6 +149,130 @@ msgstr ""
 
 #: templates/accounts/password_reset_done.html:14
 msgid "An Email has been sent with instruction to reset your password"
+msgstr ""
+
+#: templates/accounts/profile.html:7
+msgid "OnlineRestaurant | Profile"
+msgstr ""
+
+#: templates/accounts/profile.html:27
+msgid "Hello"
+msgstr ""
+
+#: templates/accounts/profile.html:28
+msgid "This is your profile page. Here you can see and change your personal infomation."
+msgstr ""
+
+#: templates/accounts/profile.html:29
+msgid "Edit profile"
+msgstr ""
+
+#: templates/accounts/profile.html:64
+msgid "Reviews"
+msgstr ""
+
+#: templates/accounts/profile.html:68 templates/foods/details.html:189
+msgid "Comments"
+msgstr ""
+
+#: templates/accounts/profile.html:72
+msgid "Orders"
+msgstr ""
+
+#: templates/accounts/profile.html:88
+msgid "ADMIN"
+msgstr ""
+
+#: templates/accounts/profile.html:91
+msgid "STAFF"
+msgstr ""
+
+#: templates/accounts/profile.html:93
+msgid "NORMAL USER"
+msgstr ""
+
+#: templates/accounts/profile.html:98
+msgid "Last login:"
+msgstr ""
+
+#: templates/accounts/profile.html:99
+msgid "Date joined:"
+msgstr ""
+
+#: templates/accounts/profile.html:100
+msgid "Show more"
+msgstr ""
+
+#: templates/accounts/profile.html:110
+msgid "My account"
+msgstr ""
+
+#: templates/accounts/profile.html:113
+msgid "Change password"
+msgstr ""
+
+#: templates/accounts/profile.html:114
+msgid "Settings"
+msgstr ""
+
+#: templates/accounts/profile.html:120
+msgid "Password Reset"
+msgstr ""
+
+#: templates/accounts/profile.html:125
+msgid "Current password"
+msgstr ""
+
+#: templates/accounts/profile.html:131
+msgid "New password"
+msgstr ""
+
+#: templates/accounts/profile.html:137
+msgid "New password (confirm)"
+msgstr ""
+
+#: templates/accounts/profile.html:145
+msgid "User information"
+msgstr ""
+
+#: templates/accounts/profile.html:150 templates/accounts/profile.html:151
+msgid "Username"
+msgstr ""
+
+#: templates/accounts/profile.html:156
+msgid "Email address"
+msgstr ""
+
+#: templates/accounts/profile.html:157
+msgid "test@example.com"
+msgstr ""
+
+#: templates/accounts/profile.html:164 templates/accounts/profile.html:165
+msgid "First name"
+msgstr ""
+
+#: templates/accounts/profile.html:170 templates/accounts/profile.html:171
+msgid "Last name"
+msgstr ""
+
+#: templates/accounts/profile.html:178
+msgid "Contact information"
+msgstr ""
+
+#: templates/accounts/profile.html:191
+msgid "Phone Number"
+msgstr ""
+
+#: templates/accounts/profile.html:197 templates/accounts/profile.html:198
+msgid "City"
+msgstr ""
+
+#: templates/accounts/profile.html:203 templates/accounts/profile.html:204
+msgid "Country"
+msgstr ""
+
+#: templates/accounts/profile.html:209 templates/accounts/profile.html:210
+msgid "Postal code"
 msgstr ""
 
 #: templates/accounts/register.html:5
@@ -273,10 +398,6 @@ msgstr ""
 
 #: templates/foods/details.html:185
 msgid "Leave your comment"
-msgstr ""
-
-#: templates/foods/details.html:189
-msgid "Comments"
 msgstr ""
 
 #: templates/foods/details.html:190
@@ -460,6 +581,6 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: views.py:44
+#: views.py:50
 msgid "Your account has been created! You can login now"
 msgstr ""
