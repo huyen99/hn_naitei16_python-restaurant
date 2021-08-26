@@ -158,3 +158,18 @@ def remove_from_cart(request, id):
         "success": success,
     }
     return JsonResponse(context)
+
+@login_required
+def profile(request):
+    reviews = Review.objects.filter(user=request.user)
+    replies = Reply.objects.filter(user=request.user)
+    status = get_object_or_404(Status, name='cart')
+    orders = Bill.objects.filter(user=request.user).exclude(status=status)
+    
+    context = {
+        "reviews": reviews,
+        "comments": replies,
+        "orders": orders
+    }
+    
+    return render(request, 'accounts/profile.html', context)

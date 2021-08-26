@@ -136,14 +136,19 @@ $(document).ready(function(){
     
     // SCROLL INTO NEW REPLY
     if (localStorage.getItem("newReplyId")) {
-        $("#replyForm" + localStorage.getItem("parentId")).collapse();
-        $("#replyList" + localStorage.getItem("parentId")).collapse();
+        var _parentId = localStorage.getItem("parentId")
+        $('#replyForm' + _parentId).attr('class', 'collapse in');
+        $('#replyList' + _parentId).attr('class', 'collapse in');
         var _id = localStorage.getItem("newReplyId");
         e = document.getElementById(_id);
+        e.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
         e.classList.add("animate__animated");
         e.classList.add("animate__tada");
         localStorage.clear();
     }
+
+    $('#account-information').attr('style', 'height: 0px;');
+    $('#password-reset').attr('style', 'height: 0px;');
 
     $(window).resize(function() {
         var element = document.querySelector(".about");

@@ -111,7 +111,7 @@
                                             {% if user.is_authenticated %}
                                                 {% if food in in_cart %}
                                                     <a id="atc-detail" data-token="{{ csrf_token }}" type="submit" name="food_id" value="{{ food.id }}">
-                                                        <i class="fas fa-cart-plus"></i>
+                                                        <i class="fas fa-check-circle"></i>
                                                         <span>{% translate "REMOVE FROM CART" %}</span>
                                                     </a>
                                                 {% else %}
