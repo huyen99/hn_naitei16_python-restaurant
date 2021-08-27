@@ -5,8 +5,11 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Avg, Q
+from django.db import transaction
 import functools
 import copy
+import json
+from decimal import Decimal
 from .models import Food, Review, Reply, Bill, Item, Status
 from .forms import UserRegisterForm
 from .utils.constant import RATE_TEMPLATE
@@ -17,7 +20,7 @@ def get_cart(request):
         status = get_object_or_404(Status, name='cart')
         bill = Bill.objects.prefetch_related('item_set').filter(user=request.user, status=status).first()
         cart_items = bill.item_set.all()
-        in_cart = [item.food for item in bill.item_set.all()]
+        in_cart = [item.food for item in cart_items]
     
     return bill, cart_items, in_cart
 
@@ -173,3 +176,72 @@ def profile(request):
     }
     
     return render(request, 'accounts/profile.html', context)
+
+@login_required
+def checkout(request):
+    cart = request.POST.get('checkoutip')
+    cart = json.loads(cart)
+    bill, _, _ = get_cart(request)
+    final_price = 0
+    
+    with transaction.atomic():
+        for keys, values in cart.items():
+            food = get_object_or_404(Food, id=int(keys))
+            item = get_object_or_404(Item, food=food, bill=bill)
+            item.quantity = int(values)
+            item.save()
+            final_price = final_price + item.unit_price * int(values)
+    
+    if bill.coupon:
+        final_price = Decimal(final_price * bill.coupon.value) + floatbill.delivery_charges
+    else:
+        final_price = Decimal(final_price) + bill.delivery_charges
+        
+    context = {
+        "fprice": final_price
+    }
+
+    return render(request,'cart/checkout.html', context)
+    
+@login_required
+def handle_checkout(request):
+    if request.method == "POST":
+        final_price = request.POST.get('fprice')
+        inputName = request.POST.get('inputName')
+        inputPhoneNo = request.POST.get('inputPhoneNo')
+        inputAddress = request.POST.get('inputAddress')
+        inputCity = request.POST.get('inputCity')
+        inputCountry = request.POST.get('inputCountry')
+        inputZip = request.POST.get('inputZip')
+        inputShipNote = request.POST.get('inputShipNote')
+
+        for v in [inputName, inputPhoneNo, inputAddress, inputCity, inputCountry, inputZip, final_price]:
+            if len(v.split()) == 0:
+                return redirect('cart')
+        
+        current_bill, _, _ = get_cart(request)
+        status = get_object_or_404(Status, name='processing')
+        
+        with transaction.atomic():
+            new_bill, notExist = Bill.objects.get_or_create(
+                user = request.user,
+                recipient = inputName,
+                phone_number = inputPhoneNo,
+                address = inputAddress,
+                city = inputCity,
+                country = inputCountry,
+                zip_code = inputZip,
+                total = final_price,
+                shipping_note = inputShipNote,
+                status = status,
+            )
+            Item.objects.filter(bill=current_bill).update(bill=new_bill)
+
+        context = {
+            "order" : new_bill,
+        }
+
+        return render(request,'cart/payment.html', context)
+    else:
+        messages.error(request, _(f"Bill checkout processing failed."))
+        return redirect('index')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-26 11:18+0700\n"
+"POT-Creation-Date: 2021-08-27 14:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -259,15 +259,17 @@ msgstr ""
 msgid "Contact information"
 msgstr ""
 
-#: templates/accounts/profile.html:191
+#: templates/accounts/profile.html:191 templates/cart/checkout.html:29
 msgid "Phone Number"
 msgstr ""
 
 #: templates/accounts/profile.html:197 templates/accounts/profile.html:198
+#: templates/cart/checkout.html:39
 msgid "City"
 msgstr ""
 
 #: templates/accounts/profile.html:203 templates/accounts/profile.html:204
+#: templates/cart/checkout.html:43
 msgid "Country"
 msgstr ""
 
@@ -354,6 +356,86 @@ msgstr ""
 
 #: templates/cart/cart.html:107
 msgid "There are no items in your cart."
+msgstr ""
+
+#: templates/cart/checkout.html:6
+msgid "OnlineRestaurant | Checkout"
+msgstr ""
+
+#: templates/cart/checkout.html:17
+msgid "You will be paying"
+msgstr ""
+
+#: templates/cart/checkout.html:17
+msgid "Fill in the details below to continue to payment."
+msgstr ""
+
+#: templates/cart/checkout.html:25
+msgid "Recipient"
+msgstr ""
+
+#: templates/cart/checkout.html:26
+msgid "Full Name"
+msgstr ""
+
+#: templates/cart/checkout.html:30
+msgid "Mobile Phone Number"
+msgstr ""
+
+#: templates/cart/checkout.html:34
+msgid "Full Address"
+msgstr ""
+
+#: templates/cart/checkout.html:35
+msgid "Shipping Address"
+msgstr ""
+
+#: templates/cart/checkout.html:40
+msgid "Destination City"
+msgstr ""
+
+#: templates/cart/checkout.html:44
+msgid "Destination Country"
+msgstr ""
+
+#: templates/cart/checkout.html:47
+msgid "Zip"
+msgstr ""
+
+#: templates/cart/checkout.html:48
+msgid "Postal Code"
+msgstr ""
+
+#: templates/cart/checkout.html:52
+msgid "Shipping Note"
+msgstr ""
+
+#: templates/cart/checkout.html:53
+msgid "A short message for drivers to better find your place."
+msgstr ""
+
+#: templates/cart/checkout.html:59
+msgid "Agree to our terms and conditions."
+msgstr ""
+
+#: templates/cart/checkout.html:64
+msgid "Continue to Payment"
+msgstr ""
+
+#: templates/cart/payment.html:6
+msgid "OnlineRestaurant | Payment"
+msgstr ""
+
+#: templates/cart/payment.html:19
+msgid "Your order id is"
+msgstr ""
+
+#: templates/cart/payment.html:23
+msgid "Pay"
+msgstr ""
+
+#: templates/cart/payment.html:24
+msgid "Continue Shopping?"
 msgstr ""
 
 #: templates/foods/details.html:6
@@ -581,6 +663,10 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: views.py:50
+#: views.py:53
 msgid "Your account has been created! You can login now"
+msgstr ""
+
+#: views.py:246
+msgid "Bill checkout processing failed."
 msgstr ""

@@ -302,4 +302,18 @@ $(document).ready(function(){
         totalQuantity.innerHTML = noitems;
         endtotalDisplay.innerHTML = delvCharges.innerText ? (parseFloat(total)+parseFloat(delvCharges.innerText)).toFixed(2) : "$"+total;
     }
+    
+    $("#checkout").on('click', function(){
+        var tbody = $("#all_foods")[0];
+        var cfs = $("#checkoutfs")[0];
+        var pdict = {};
+
+        for (var i = 0; i < tbody.rows.length; i++) {
+            PID = tbody.rows[i].cells[1].getElementsByClassName('pid')[0].innerText;
+            noitems = tbody.rows[i].cells[3].getElementsByTagName('input')[0].value;
+            pdict[PID] = noitems;
+        }
+        cfs.getElementsByTagName('input')[1].value = JSON.stringify(pdict);
+        cfs.submit();
+    });
 });
