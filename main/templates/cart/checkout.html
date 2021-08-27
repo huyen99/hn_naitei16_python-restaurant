@@ -1,0 +1,67 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Checkout" %}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block content %}
+    <div class="checkout-main checkout-container">
+        <div class="text-center">
+            <div class="card-header">
+                {% translate "You will be paying" %} ${{ fprice }}. {% translate "Fill in the details below to continue to payment." %}
+            </div>
+        </div>
+        <br>
+        <form method="POST" action="{% url 'handle-checkout' %}">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <label for="inputName">{% translate "Recipient" %}</label>
+                    <input required type="text" class="form-control" id="inputName" name="inputName" placeholder="{% translate 'Full Name' %}" value="{% if user.first_name and user.last_name %}{{ user.first_name }} {{ user.last_name }}{% endif %}">
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="inputPhoneNo">{% translate "Phone Number" %}</label>
+                    <input required type="text" class="form-control" id="inputPhoneNo" name="inputPhoneNo" placeholder="{% translate 'Mobile Phone Number' %}" value="{% if user.phone_number %}{{ user.phone_number }}{% endif %}">
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputAddress">{% translate "Full Address" %}</label>
+                <input required type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="{% translate 'Shipping Address' %}" value="{% if user.address %}{{ user.address }}{% endif %}">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <label for="inputCity">{% translate "City" %}</label>
+                    <input required type="text" class="form-control" id="inputCity" name="inputCity" placeholder="{% translate 'Destination City' %}" value="{% if user.city %}{{ user.city }}{% endif %}">
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="inputCountry">{% translate "Country" %}</label>
+                    <input required type="text" class="form-control" id="inputCountry" name="inputCountry" placeholder="{% translate 'Destination Country' %}" value="{% if user.country %}{{ user.country }}{% endif %}">
+                </div>
+                <div class="form-group col-lg-2">
+                    <label for="inputZip">{% translate "Zip" %}</label>
+                    <input required type="text" class="form-control" id="inputZip" name="inputZip" placeholder="{% translate 'Postal Code' %}" value="{% if user.zip_code %}{{ user.zip_code }}{% endif %}">
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputShipNote">{% translate "Shipping Note" %}</label>
+                <textarea class="form-control" id="inputShipNote" name="inputShipNote" placeholder="{% translate 'A short message for drivers to better find your place.' %}" rows="3"></textarea>
+              </div>
+            <div class="form-group col-md-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        {% translate "Agree to our terms and conditions." %}
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" class="form-control" name="fprice" value="{{ fprice }}">
+            <button type="submit" class="btn btn-primary col-md-12">{% translate "Continue to Payment" %}</button>
+        </form>
+    </div>
+{% endblock %}

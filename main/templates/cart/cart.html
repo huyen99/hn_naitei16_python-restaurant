@@ -47,7 +47,7 @@
                                         {{ item.food.name }}
                                         <a class="ref-link" href="{% url 'food-details' item.food.id %}"><i class="fas fa-external-link-alt "></i></a>
                                     </div>
-                                    <!-- <div class="pid" hidden>{{ item.food.id }}</div> -->
+                                    <div class="pid" hidden>{{ item.food.id }}</div>
                                 </td>
                                 <td>{{ item.food.price }}</td>
                                 <td class="quantity">
@@ -93,12 +93,12 @@
                     </span>
                     <div>
                         <a href="{% url 'index' %}#menu">{% translate "Continue Shopping" %}</a>
-                        <a>{% translate "Checkout" %}</a>
+                        <a id="checkout">{% translate "Checkout" %}</a>
                     </div>
                 </div>
             </div>
     
-            <form hidden id="checkoutfs" action="" method="post">
+            <form hidden id="checkoutfs" action="{% url 'checkout' %}" method="post">
                 {% csrf_token %}
                 <input name="checkoutip" value="" type="text">
             </form>
