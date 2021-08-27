@@ -97,12 +97,12 @@
                                     <hr class="my-4">
                                     <div><i class="ni education_hat mr-2"></i>{% translate "Last login:" %} {{ user.last_login|date:'Y/m/d H:i' }}</div>
                                     <p>{% translate "Date joined:" %} {{ user.date_joined|date:'Y/m/d H:i' }}</p>
-                                    <a href="#account-information" data-toggle="collapse">{% translate "Show more" %}</a>
+                                    <a href=".multi-collapse" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="password-reset user-info">{% translate "Show more" %}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="account-information" class="col-xl-8 order-xl-1 collapse">
+                    <div class="col-xl-8 order-xl-1">
                         <div class="card bg-secondary shadow">
                             <div class="card-header bg-white border-0">
                                 <div class="row align-items-center">
@@ -110,13 +110,13 @@
                                         <h3 class="mb-0">{% translate "My account" %}</h3>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <a href="#password-reset" data-toggle="collapse" class="btn btn-sm btn-primary">{% translate "Change password" %}</a>
-                                        <a href="#user-info" data-toggle="collapse" class="btn btn-sm btn-primary">{% translate "Settings" %}</a>
+                                        <a href="#password-reset" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="password-reset" class="btn btn-sm btn-primary">{% translate "Change password" %}</a>
+                                        <a href="#user-info" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="user-info" class="btn btn-sm btn-primary">{% translate "Settings" %}</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <form id="password-reset" class="collapse">
+                            <div id="account-information" class="card-body">
+                                <form id="password-reset" class="collapse multi-collapse">
                                     <h6 class="heading-small text-muted mb-4">{% translate "Password Reset" %}</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
@@ -141,7 +141,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <form id="user-info" class="collapse in">
+                                <form id="user-info" class="collapse multi-collapse">
                                     <h6 class="heading-small text-muted mb-4">{% translate "User information" %}</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
@@ -213,6 +213,72 @@
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Orders -->
+                <div class="row" id="orders-history">
+                    <div class="card bg-secondary shadow">
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">{% translate "Order History" %}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="shpcart" id="orders-table">
+                                {% if orders %}
+                                    <table class="table table-bordered table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">{% translate "Order ID" %}</th>
+                                                <th scope="col">{% translate "Items" %}</th>
+                                                <th scope="col">{% translate "Total" %}</th>
+                                                <th scope="col">{% translate "Date and Time" %}</th>
+                                                <th scope="col">{% translate "Status" %}</th>
+                                                <th scope="col">{% translate "Delivered To" %}</th>
+                                                <th scope="col">{% translate "Contact No." %}</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for order in orders %}
+                                            <tr>
+                                                <th scope="row">{{ order.id }}</th>
+                                                <td>
+                                                    {% for item in order.item_set.all %}
+                                                        {{ item.food.name }}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>{{ order.total }}</td>
+                                                <td>{{ order.order_date }}</td>
+                                                <td><mark>{{ order.status.name }}</mark></td>
+                                                <td>{{ order.address }}</td>
+                                                <td>{{ order.phone_number }}</td>
+                                                <td>
+                                                    {% if order.status.name == 'Purchased' %}
+                                                        <a class="btn btn-success" href="">{% translate "View Receipt" %}</a>
+                                                    {% else %}
+                                                        <a class="btn btn-info" href="{% url 'handle-checkout' order.id %}">{% translate "Payment" %}</a>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <form action="javascript:void(0);" method="post">
+                                                        {% csrf_token %}
+                                                        <input hidden name="checkoutip" value="" type="text">
+                                                        <button class="btn btn-warning" type="submit">{% translate "Re-Order" %}</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p class="text-center"><em>{% translate "You have not ordered anything yet." %}</em></p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-27 14:51+0700\n"
+"POT-Creation-Date: 2021-08-27 17:33+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,6 +281,54 @@ msgstr "Quốc gia"
 msgid "Postal code"
 msgstr "Mã bưu điện"
 
+#: templates/accounts/profile.html:226
+msgid "Order History"
+msgstr "Lịch sử đặt hàng"
+
+#: templates/accounts/profile.html:236
+msgid "Order ID"
+msgstr "ID đơn hàng"
+
+#: templates/accounts/profile.html:237
+msgid "Items"
+msgstr "Món ăn"
+
+#: templates/accounts/profile.html:238 templates/cart/cart.html:31
+msgid "Total"
+msgstr "Tổng"
+
+#: templates/accounts/profile.html:239
+msgid "Date and Time"
+msgstr "Ngày giờ"
+
+#: templates/accounts/profile.html:240
+msgid "Status"
+msgstr "Trạng thái"
+
+#: templates/accounts/profile.html:241
+msgid "Delivered To"
+msgstr "Địa chỉ nhận"
+
+#: templates/accounts/profile.html:242
+msgid "Contact No."
+msgstr "Số điện thoại"
+
+#: templates/accounts/profile.html:263
+msgid "View Receipt"
+msgstr "Xem hóa đơn"
+
+#: templates/accounts/profile.html:265
+msgid "Payment"
+msgstr "Thanh toán"
+
+#: templates/accounts/profile.html:272
+msgid "Re-Order"
+msgstr "Đặt lại đơn"
+
+#: templates/accounts/profile.html:280
+msgid "You have not ordered anything yet."
+msgstr "Bạn chưa có đơn hàng nào cả."
+
 #: templates/accounts/register.html:5
 msgid "OnlineRestaurant | Register"
 msgstr "Đăng ký"
@@ -320,10 +368,6 @@ msgstr "Giá"
 #: templates/cart/cart.html:30
 msgid "Quantity"
 msgstr "Số lượng"
-
-#: templates/cart/cart.html:31
-msgid "Total"
-msgstr "Tổng"
 
 #: templates/cart/cart.html:32
 msgid "Remove"
@@ -669,6 +713,6 @@ msgstr "Thực đơn"
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"
 
-#: views.py:246
+#: views.py:256
 msgid "Bill checkout processing failed."
 msgstr "Xử lý hóa đơn thanh toán không thành công."

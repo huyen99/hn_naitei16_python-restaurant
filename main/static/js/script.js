@@ -147,8 +147,8 @@ $(document).ready(function(){
         localStorage.clear();
     }
 
-    $('#account-information').attr('style', 'height: 0px;');
     $('#password-reset').attr('style', 'height: 0px;');
+    $('#user-info').attr('style', 'height: 0px;');
 
     $(window).resize(function() {
         var element = document.querySelector(".about");
