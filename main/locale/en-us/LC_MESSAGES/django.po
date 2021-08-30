@@ -486,7 +486,7 @@ msgstr ""
 msgid "Add comment"
 msgstr ""
 
-#: templates/foods/details.html:198 templates/foods/details.html:223
+#: templates/foods/details.html:198 templates/foods/details.html:226
 msgid "profile"
 msgstr ""
 
@@ -500,24 +500,28 @@ msgid_plural "comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/foods/details.html:240 templates/foods/details.html:276
+#: templates/foods/details.html:217 templates/foods/details.html:234
+msgid "Delete"
+msgstr ""
+
+#: templates/foods/details.html:246 templates/foods/details.html:282
 #: templates/layouts/footer.html:39
 msgid "Comment"
 msgstr ""
 
-#: templates/foods/details.html:248 templates/foods/details.html:284
+#: templates/foods/details.html:254 templates/foods/details.html:290
 msgid "Submit comment"
 msgstr ""
 
-#: templates/foods/details.html:250
+#: templates/foods/details.html:256
 msgid "Login to comment"
 msgstr ""
 
-#: templates/foods/details.html:264
+#: templates/foods/details.html:270
 msgid "Rating"
 msgstr ""
 
-#: templates/foods/details.html:286
+#: templates/foods/details.html:292
 msgid "Login to submit"
 msgstr ""
 

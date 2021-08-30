@@ -4,8 +4,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
-from django.db.models import Avg, Q
+from django.db.models import Avg, Q, Func
 from django.db import transaction
+from django.core import serializers
 import functools
 import copy
 import json
@@ -23,6 +24,19 @@ def get_cart(request):
         in_cart = [item.food for item in cart_items]
     
     return bill, cart_items, in_cart
+    
+def count_rating(reviews):
+    # Copy constant to another dict to reset dict value on page refresh
+    _rate = copy.deepcopy(RATE_TEMPLATE)
+    
+    # How many reviews per star?
+    for review in reviews:
+        i = review.rating
+        if i in _rate:
+            _rate[i][1] += 1
+            _rate[i][2] = int(_rate[i][1]/len(reviews) * 100)
+    
+    return _rate
 
 def index(request):
     foods = Food.objects.prefetch_related('image_set').annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')
@@ -57,20 +71,16 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
-    
-def food_details(request, id):
-    food = Food.objects.prefetch_related('review_set').annotate(avg_rating=Avg('review__rating')).filter(id=id).first()
-    _, _, in_cart = get_cart(request)
 
-    # Copy constant to another dict to reset dict value on page refresh
-    _rate = copy.deepcopy(RATE_TEMPLATE)
-    
-    # How many reviews per star?
-    for review in food.review_set.all():
-        i = review.rating
-        if i in _rate:
-            _rate[i][1] += 1
-            _rate[i][2] = int(_rate[i][1]/5 * 100)
+class Round(Func):
+    function = 'ROUND'
+    template='%(function)s(%(expressions)s, 2)'
+
+def food_details(request, id):
+    food = Food.objects.prefetch_related('review_set').annotate(avg_rating=Round(Avg('review__rating'))).filter(id=id).first()
+    _, _, in_cart = get_cart(request)
+    reviews = food.review_set.all()
+    _rate = count_rating(reviews)
 
     context = {
         "food": food,
@@ -98,7 +108,7 @@ def review(request, id):
         }
 
         return JsonResponse(context)
-        
+
 @login_required
 def reply(request, food_id, review_id):
     if request.method == 'POST':
@@ -117,6 +127,38 @@ def reply(request, food_id, review_id):
         }
 
         return JsonResponse(context)
+
+@login_required
+def delete_review(request, id):
+    success = False
+    review = Review.objects.filter(id=id).first()
+    food_id = review.food.id
+
+    if review.delete():
+        success = True
+
+    food = Food.objects.prefetch_related('review_set').annotate(avg_rating=Round(Avg('review__rating'))).filter(id=food_id).first()
+    reviews = food.review_set.all()
+    _rate = count_rating(reviews)
+
+    context = {
+        "success": success,
+        "new_average": food.avg_rating,
+        "rate_dict": _rate,
+    }
+
+    return JsonResponse(context)
+
+@login_required
+def delete_reply(request, id):
+    success = False
+    if Reply.objects.filter(id=id).delete():
+        success = True
+    
+    context = {
+        "success": success,
+    }
+    return JsonResponse(context)
 
 @login_required
 def cart(request):
@@ -193,7 +235,7 @@ def checkout(request):
             final_price = final_price + item.unit_price * int(values)
     
     if bill.coupon:
-        final_price = Decimal(final_price * bill.coupon.value) + floatbill.delivery_charges
+        final_price = Decimal(final_price * bill.coupon.value) + bill.delivery_charges
     else:
         final_price = Decimal(final_price) + bill.delivery_charges
         

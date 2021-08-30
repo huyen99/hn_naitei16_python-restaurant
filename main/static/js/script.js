@@ -1,4 +1,21 @@
 $(document).ready(function(){
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    
     // FLASH MESSAGES
     var close = document.getElementsByClassName("closebtnmsg");
     var i;
@@ -73,14 +90,13 @@ $(document).ready(function(){
         var _rating = document.querySelector('input[name="rating"]:checked') ? 
             document.querySelector('input[name="rating"]:checked').value : 0;
         var _comment = $("#addComment").val();
-        var _csrf_token = $("#commentForm [name=csrfmiddlewaretoken]").val();
         $.ajax({
             type: "POST",
             url: "review/",
             data: {
                 'rating': _rating, 
                 'comment': _comment, 
-                'csrfmiddlewaretoken': _csrf_token
+                'csrfmiddlewaretoken': csrftoken
             },
             dataType: 'json',
             success: function(response){
@@ -111,13 +127,12 @@ $(document).ready(function(){
         localStorage.clear();
         var _reviewId = $(this).data('parent');
         var _content = $("#addReply" + _reviewId).val();
-        var _csrf_token = $("#replyForm" + _reviewId + " [name=csrfmiddlewaretoken]").val();
         $.ajax({
             type: "POST",
             url: "review/" + _reviewId + "/reply/",
             data: {
                 'content': _content,
-                'csrfmiddlewaretoken': _csrf_token
+                'csrfmiddlewaretoken': csrftoken
             },
             dataType: 'json',
             success: function(response){
@@ -146,6 +161,135 @@ $(document).ready(function(){
         e.classList.add("animate__tada");
         localStorage.clear();
     }
+    
+    $('[id^="deleteReview"]').on('click', function(){
+        review_id = this.id.split('-')[1];
+        var rating = $(this).data('rating');
+        var answer = confirm(gettext('Are you sure you want to delete this review?'));
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        if (answer == true) {
+            $.ajax({
+                type: 'DELETE',
+                url: window.location.origin + lang + 'delete-review/' + parseInt(review_id),
+                data: {
+                    'review_id': review_id,
+                },
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function(response){
+                    $("#comment" + review_id).remove();
+                    var comment_count = $(document.querySelector('.badge'))[0]
+                    var comment_remain = parseInt(comment_count.innerText) - 1;
+                    comment_count.innerText = comment_remain;
+                    var star_wrap = $('p.star-wrap');
+                    var comment_wrap = $('div.comment-wrap');
+                    var new_rating = parseFloat(response.new_average);
+                    var rate_dict = response.rate_dict;
+                    for (var i = 1; i <= 5; i++) {
+                        $('#star-' + i).remove();
+                    }
+                    comment_wrap.children().remove();
+                    for (var i = 1; i <= 5; i++) {
+                        _html = '';
+                        if (i <= new_rating) {
+                            _html +=    `<button type="button" id="star-${i}" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>`;
+                        }
+                        else {
+                            _html +=    `<button type="button" id="star-${i}" class="btn btn-default btn-xs" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        </button>`;
+                        }
+                        star_wrap.append(_html);
+                    }
+                    var _html = `<div class="col-sm-4">
+                                    <div class="rating-block">
+                                        <h4>${gettext("Average user rating")}</h4>
+                                        <h2 class="bold padding-bottom-7">${new_rating} <small>/ 5</small></h2>`;
+                    for (var i = 1; i <= 5; i++) {
+                        if (i <= new_rating) {
+                            _html +=        `<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>`;
+                        }
+                        else {
+                            _html +=        `<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>`;
+                        }
+                    }
+                    _html +=        `</div>
+                                </div>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <h4>${gettext("Rating breakdown")}</h4>
+                                    <div class="count-wrap">`;
+                    for (var i = 5; i >= 1; i--) {
+                        _html +=        `<div class="pull-left">
+                                            <div class="pull-left count-key">
+                                                <div>${i}<span class="glyphicon glyphicon-star"></span></div>
+                                            </div>
+                                            <div class="pull-left count-progress">
+                                                <div class="progress count-row">
+                                                <div 
+                                                    class="progress-bar progress-bar-${rate_dict[i][0]}" 
+                                                    role="progressbar" aria-valuenow="${i}" aria-valuemin="0" aria-valuemax="5" style="width: ${rate_dict[i][2]}%">
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right count-value">${rate_dict[i][1]}</div>
+                                        </div>`;
+                    }
+                    _html +=        `</div>
+                                </div>`;
+                    comment_wrap.append(_html);
+                },
+                error: function(rs, e){
+                    console.log(rs.responseText);
+                },
+            });
+        }
+    });
+    
+    $('[id^="deleteReply"]').on('click', function(){
+        reply_id = this.id.split('-')[1];
+        review_id = $(this).attr('name').split('-')[1];
+        var answer = confirm(gettext('Are you sure you want to delete this comment?'));
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        if (answer == true) {
+            $.ajax({
+                type: 'DELETE',
+                url: window.location.origin + lang + 'delete-reply/',
+                data: {
+                    'reply_id': reply_id,
+                },
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function(response){
+                    if (response.success == true) {
+                        $("#reply" + reply_id).remove();
+                        replyCount = $("#replyCount" + review_id)[0]
+                        newCount = parseInt(replyCount.innerText.split()[0]) - 1;
+                        if (newCount == 1) {
+                            replyCount.innerText = newCount + gettext(" COMMENT");
+                        }
+                        else {
+                            replyCount.innerText = newCount + gettext(" COMMENTS");
+                        }
+                    }
+                },
+                error: function(rs, e){
+                    console.log(rs.responseText);
+                },
+            });
+        }
+    });
 
     $('#account-information').attr('style', 'height: 0px;');
     $('#password-reset').attr('style', 'height: 0px;');
@@ -197,7 +341,6 @@ $(document).ready(function(){
         e.preventDefault();
         var icon = e.currentTarget;
         var id = this.id;
-        var token = $(this).data('token');
         var food_id = $(this).attr('value');
         if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
         else lang = '/vi/';
@@ -206,7 +349,7 @@ $(document).ready(function(){
             url: window.location.origin + lang + 'add-to-cart/',
             data: {
                 'id': food_id,
-                'csrfmiddlewaretoken': token
+                'csrfmiddlewaretoken': csrftoken
             },
             dataType: 'json',
             success: function(rs){
@@ -222,7 +365,6 @@ $(document).ready(function(){
     // REMOVE FROM CART ON CLICK REMOVE BUTTON
     $(document).on('click', '[id^="remove-button"]', function(e){
         e.preventDefault();
-        var token = $(this).data('token');
         var item_id = $(this).attr('value');
         var item_name = $(this).attr('name');
         if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
@@ -232,7 +374,7 @@ $(document).ready(function(){
             url: window.location.origin + lang + 'remove-from-cart/' + item_id,
             data: {
                 'item': item_name,
-                'csrfmiddlewaretoken': token
+                'csrfmiddlewaretoken': csrftoken
             },
             dataType: 'json',
             success: function(rs){
