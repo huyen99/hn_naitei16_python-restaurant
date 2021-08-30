@@ -89,11 +89,11 @@
                                         {% if food.avg_rating %}
                                             {% for i in '12345'|make_list %}
                                                 {% if forloop.counter <= food.avg_rating %}
-                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                    <button type="button" id="star-{{ i }}" class="btn btn-warning btn-xs" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                                     </button>
                                                 {% else %}
-                                                    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                                    <button type="button" id="star-{{ i }}" class="btn btn-default btn-xs" aria-label="Left Align">
                                                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                                     </button>
                                                 {% endif %}
@@ -110,12 +110,12 @@
                                             {% csrf_token %}
                                             {% if user.is_authenticated %}
                                                 {% if food in in_cart %}
-                                                    <a id="atc-detail" data-token="{{ csrf_token }}" type="submit" name="food_id" value="{{ food.id }}">
+                                                    <a id="atc-detail" type="submit" name="food_id" value="{{ food.id }}">
                                                         <i class="fas fa-check-circle"></i>
                                                         <span>{% translate "REMOVE FROM CART" %}</span>
                                                     </a>
                                                 {% else %}
-                                                    <a id="atc-detail" data-token="{{ csrf_token }}" type="submit" name="food_id" value="{{ food.id }}" >
+                                                    <a id="atc-detail" type="submit" name="food_id" value="{{ food.id }}" >
                                                         <i class="fas fa-cart-plus"></i>
                                                         <span>{% translate "ADD TO CART" %}</span>
                                                     </a>
@@ -211,8 +211,11 @@
                                                     {% endfor %}
                                                 </div>
                                                 <p class="media-comment">{{ review.comment }}</p>
-                                                <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#replyForm{{ review.id }}" id="reply"><span class="glyphicon glyphicon-share-alt"></span> {% translate "Reply" %}</a>
-                                                <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyList{{ review.id }}"><span class="glyphicon glyphicon-comment"></span> {{ review.reply_set.all|length }} {% blocktranslate count count=review.reply_set.all|length %}comment{% plural %}comments{% endblocktranslate %}</a>
+                                                <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#replyForm{{ review.id }}"><span class="glyphicon glyphicon-share-alt"></span> {% translate "Reply" %}</a>
+                                                <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyList{{ review.id }}" id="replyCount{{ review.id }}"><span class="glyphicon glyphicon-comment"></span> {{ review.reply_set.all|length }} {% blocktranslate count count=review.reply_set.all|length %}comment{% plural %}comments{% endblocktranslate %}</a>
+                                                {% if review.user.id == user.id or user.is_admin %}
+                                                    <a class="btn btn-danger btn-circle text-uppercase" href="javascript:void(0);" data-rating="{{ review.rating }}" id="deleteReview-{{ review.id }}"><span class="glyphicon glyphicon-remove-circle"></span> {% translate "Delete" %}</a>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="collapse" id="replyList{{ review.id }}">
@@ -227,6 +230,9 @@
                                                                 <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> {{ reply.user }}</h4>
                                                                 <div class="media-date text-uppercase reviews list-inline">{{ reply.date_created }}</div><br>
                                                                 <p class="media-comment">{{ reply.content }}</p>
+                                                                {% if reply.user.id == user.id or user.is_admin %}
+                                                                    <a class="btn btn-danger btn-circle text-uppercase" href="javascript:void(0);" name="replyReview-{{ review.id }}" id="deleteReply-{{ reply.id }}"><span class="glyphicon glyphicon-remove-circle"></span> {% translate "Delete" %}</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </li>

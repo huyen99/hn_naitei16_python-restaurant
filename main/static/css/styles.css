@@ -835,12 +835,6 @@ body{
     }
 }
 
-/* BOOTSTRAP BTN */
-
-.btn{
-    border-radius: 0 !important;
-}
-
 /* LOGIN AND REGISTER FORM */
 
 .lr-form{
@@ -972,7 +966,6 @@ b.searchResult {
 }
 
 .btn-danger span {
-    font-family: 'Courier New', Courier, monospace;
     color: #fff;
     font-weight: bolder;
 }

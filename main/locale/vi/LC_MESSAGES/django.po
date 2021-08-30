@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Create locale file: django-admin makemessages -l vi
-# Update all local files (without losing current translations): django-admin makemessages -a -s --no-wrap
+# Update all local files (without losing current translations): django-admin makemessages -a -s --no-wrap --domain djangojs
 # Compile: django-admin compilemessages
 #, fuzzy
 msgid ""
@@ -520,7 +520,7 @@ msgstr "ĐĂNG NHẬP"
 
 #: templates/foods/details.html:145
 msgid "Average user rating"
-msgstr "Đánh giá trung bình của người dùng"
+msgstr "Trung bình đánh giá của người dùng"
 
 #: templates/foods/details.html:161
 msgid "Rating breakdown"
@@ -534,7 +534,7 @@ msgstr "Hãy để lại nhận xét ở đây"
 msgid "Add comment"
 msgstr "Thêm đánh giá"
 
-#: templates/foods/details.html:198 templates/foods/details.html:223
+#: templates/foods/details.html:198 templates/foods/details.html:226
 msgid "profile"
 msgstr "Hồ sơ cá nhân"
 
@@ -547,24 +547,28 @@ msgid "comment"
 msgid_plural "comments"
 msgstr[0] "phản hồi"
 
-#: templates/foods/details.html:240 templates/foods/details.html:276
+#: templates/foods/details.html:217 templates/foods/details.html:234
+msgid "Delete"
+msgstr "Xoá"
+
+#: templates/foods/details.html:246 templates/foods/details.html:282
 #: templates/layouts/footer.html:39
 msgid "Comment"
 msgstr "Nhận xét"
 
-#: templates/foods/details.html:248 templates/foods/details.html:284
+#: templates/foods/details.html:254 templates/foods/details.html:290
 msgid "Submit comment"
 msgstr "Gửi"
 
-#: templates/foods/details.html:250
+#: templates/foods/details.html:256
 msgid "Login to comment"
 msgstr "Đăng nhập để trả lời"
 
-#: templates/foods/details.html:264
+#: templates/foods/details.html:270
 msgid "Rating"
 msgstr "Đánh giá"
 
-#: templates/foods/details.html:286
+#: templates/foods/details.html:292
 msgid "Login to submit"
 msgstr "Đăng nhập để gửi"
 
