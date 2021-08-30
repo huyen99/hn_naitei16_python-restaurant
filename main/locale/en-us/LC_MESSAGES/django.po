@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-27 14:51+0700\n"
+"POT-Creation-Date: 2021-08-27 17:33+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,6 +277,54 @@ msgstr ""
 msgid "Postal code"
 msgstr ""
 
+#: templates/accounts/profile.html:226
+msgid "Order History"
+msgstr ""
+
+#: templates/accounts/profile.html:236
+msgid "Order ID"
+msgstr ""
+
+#: templates/accounts/profile.html:237
+msgid "Items"
+msgstr ""
+
+#: templates/accounts/profile.html:238 templates/cart/cart.html:31
+msgid "Total"
+msgstr ""
+
+#: templates/accounts/profile.html:239
+msgid "Date and Time"
+msgstr ""
+
+#: templates/accounts/profile.html:240
+msgid "Status"
+msgstr ""
+
+#: templates/accounts/profile.html:241
+msgid "Delivered To"
+msgstr ""
+
+#: templates/accounts/profile.html:242
+msgid "Contact No."
+msgstr ""
+
+#: templates/accounts/profile.html:263
+msgid "View Receipt"
+msgstr ""
+
+#: templates/accounts/profile.html:265
+msgid "Payment"
+msgstr ""
+
+#: templates/accounts/profile.html:272
+msgid "Re-Order"
+msgstr ""
+
+#: templates/accounts/profile.html:280
+msgid "You have not ordered anything yet."
+msgstr ""
+
 #: templates/accounts/register.html:5
 msgid "OnlineRestaurant | Register"
 msgstr ""
@@ -315,10 +363,6 @@ msgstr ""
 
 #: templates/cart/cart.html:30
 msgid "Quantity"
-msgstr ""
-
-#: templates/cart/cart.html:31
-msgid "Total"
 msgstr ""
 
 #: templates/cart/cart.html:32
@@ -667,6 +711,6 @@ msgstr ""
 msgid "Your account has been created! You can login now"
 msgstr ""
 
-#: views.py:246
+#: views.py:256
 msgid "Bill checkout processing failed."
 msgstr ""

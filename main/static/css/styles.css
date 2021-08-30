@@ -367,10 +367,8 @@ body{
 }
 
 .right-content img{   
-    height: 100vh;
     width: auto;
     overflow: hidden;
-    height: 100%;
     /* background-position: center; */
     object-position: center;
     object-fit: cover;
@@ -605,7 +603,8 @@ body{
 .food-card:hover {
     box-shadow: 8px 10px 18px 0 rgba(0,0,0,0.2);
 }
-  
+
+#order-history,
 .food-container {
     padding: 20px 26px;
 }
@@ -1443,6 +1442,15 @@ p.cart-empty {
     --font-family-sans-serif: Open Sans, sans-serif;
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 } */
+
+#orders-history {
+    padding-top: 50px;
+}
+
+#orders-table {
+    margin-top: 0px;
+    display: block;
+}
 
 #account-information,
 #user-info,

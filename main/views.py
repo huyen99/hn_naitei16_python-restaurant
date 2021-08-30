@@ -204,7 +204,7 @@ def checkout(request):
     return render(request,'cart/checkout.html', context)
     
 @login_required
-def handle_checkout(request):
+def handle_checkout(request, id):
     if request.method == "POST":
         final_price = request.POST.get('fprice')
         inputName = request.POST.get('inputName')
@@ -242,6 +242,16 @@ def handle_checkout(request):
         }
 
         return render(request,'cart/payment.html', context)
+        
+    elif request.method == "GET":
+        bill = get_object_or_404(Bill, id=id)
+        
+        context = {
+            "order" : bill,
+        }
+
+        return render(request,'cart/payment.html', context)
+    
     else:
         messages.error(request, _(f"Bill checkout processing failed."))
         return redirect('index')
