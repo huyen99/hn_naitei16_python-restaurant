@@ -458,4 +458,32 @@ $(document).ready(function(){
         cfs.getElementsByTagName('input')[1].value = JSON.stringify(pdict);
         cfs.submit();
     });
+    
+    $("[id^='order-cancel']").on('click', function(){
+        var uuid = this.id.replace("order-cancel-", '');
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        var answer = confirm(gettext('Are you sure you want to cancel this order?'));
+        if (answer == true) {
+            $.ajax({
+                type: 'POST',
+                url: window.location.origin + lang + 'cancel-order/',
+                data: {
+                    'uuid': uuid,
+                    'csrfmiddlewaretoken': csrftoken
+                },
+                dataType: 'json',
+                success: function(response){
+                    if (response.success == true) {
+                        var _html = `<mark>${response.new_status}</mark>`
+                        $('#action-button-' + uuid)[0].innerHTML = '';
+                        $('#order-status-' + uuid)[0].innerHTML = _html;
+                    }
+                },
+                error: function(rs, e){
+                    console.log(rs.responseText);
+                },
+            });
+        }
+    });
 });

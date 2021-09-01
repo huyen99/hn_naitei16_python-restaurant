@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-27 17:33+0700\n"
+"POT-Creation-Date: 2021-09-01 08:07+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -321,11 +321,15 @@ msgstr "Xem hóa đơn"
 msgid "Payment"
 msgstr "Thanh toán"
 
-#: templates/accounts/profile.html:272
+#: templates/accounts/profile.html:266
+msgid "Cancel"
+msgstr "Hủy"
+
+#: templates/accounts/profile.html:273
 msgid "Re-Order"
 msgstr "Đặt lại đơn"
 
-#: templates/accounts/profile.html:280
+#: templates/accounts/profile.html:281
 msgid "You have not ordered anything yet."
 msgstr "Bạn chưa có đơn hàng nào cả."
 
@@ -713,10 +717,10 @@ msgstr "Tìm kiếm"
 msgid "Menu"
 msgstr "Thực đơn"
 
-#: views.py:53
+#: views.py:67
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"
 
-#: views.py:256
+#: views.py:298
 msgid "Bill checkout processing failed."
 msgstr "Xử lý hóa đơn thanh toán không thành công."

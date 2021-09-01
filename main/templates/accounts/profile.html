@@ -255,14 +255,15 @@
                                                 </td>
                                                 <td>{{ order.total }}</td>
                                                 <td>{{ order.order_date }}</td>
-                                                <td><mark>{{ order.status.name }}</mark></td>
+                                                <td id="order-status-{{ order.id }}"><mark>{{ order.status.name }}</mark></td>
                                                 <td>{{ order.address }}</td>
                                                 <td>{{ order.phone_number }}</td>
-                                                <td>
-                                                    {% if order.status.name == 'Purchased' %}
+                                                <td id="action-button-{{ order.id }}">
+                                                    {% if order.status.name == 'purchased' %}
                                                         <a class="btn btn-success" href="">{% translate "View Receipt" %}</a>
-                                                    {% else %}
-                                                        <a class="btn btn-info" href="{% url 'handle-checkout' order.id %}">{% translate "Payment" %}</a>
+                                                    {% elif order.status.name == 'processing' %}
+                                                        <a class="btn btn-info" href="{% url 'payment' order.id %}">{% translate "Payment" %}</a>
+                                                        <a class="btn btn-warning" id="order-cancel-{{ order.id }}">{% translate "Cancel" %}</a>
                                                     {% endif %}
                                                 </td>
                                                 <td>
