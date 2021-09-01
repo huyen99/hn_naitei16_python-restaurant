@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-27 17:33+0700\n"
+"POT-Creation-Date: 2021-09-01 08:07+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,11 +317,15 @@ msgstr ""
 msgid "Payment"
 msgstr ""
 
-#: templates/accounts/profile.html:272
+#: templates/accounts/profile.html:266
+msgid "Cancel"
+msgstr ""
+
+#: templates/accounts/profile.html:273
 msgid "Re-Order"
 msgstr ""
 
-#: templates/accounts/profile.html:280
+#: templates/accounts/profile.html:281
 msgid "You have not ordered anything yet."
 msgstr ""
 
@@ -711,10 +715,10 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: views.py:53
+#: views.py:67
 msgid "Your account has been created! You can login now"
 msgstr ""
 
-#: views.py:256
+#: views.py:298
 msgid "Bill checkout processing failed."
 msgstr ""

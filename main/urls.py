@@ -22,5 +22,7 @@ urlpatterns = [
     path('remove-from-cart/<id>', views.remove_from_cart, name="remove-from-cart"),
     path('profile/', views.profile, name='profile'),
     path('checkout/', views.checkout, name="checkout"),
-    path('handle_checkout/<id>', views.handle_checkout, name="handle-checkout"),
+    path('handle-checkout/', views.handle_checkout, name="handle-checkout"),
+    path('payment/<uuid:id>', views.handle_checkout, name="payment"),
+    path('cancel-order/', views.cancel_order, name="cancel-order"),
 ]

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-28 03:51+0700\n"
+"POT-Creation-Date: 2021-09-01 08:04+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,30 +22,34 @@ msgstr ""
 msgid "Are you sure you want to delete this review?"
 msgstr "Bạn có chắc chắn muốn xóa đánh giá này không?"
 
-#: static/js/script.js:212
+#: static/js/script.js:211
 msgid "Average user rating"
 msgstr "Trung bình đánh giá của người dùng"
 
-#: static/js/script.js:229
+#: static/js/script.js:228
 msgid "Rating breakdown"
 msgstr "Thống kê"
 
-#: static/js/script.js:261
+#: static/js/script.js:260
 msgid "Are you sure you want to delete this comment?"
 msgstr "Bạn có chắc chắn muốn xóa bình luận này không?"
 
-#: static/js/script.js:281
+#: static/js/script.js:280
 msgid " COMMENT"
 msgstr " BÌNH LUẬN"
 
-#: static/js/script.js:284
+#: static/js/script.js:283
 msgid " COMMENTS"
 msgstr " BÌNH LUẬN"
 
-#: static/js/script.js:331
+#: static/js/script.js:330
 msgid "ADD TO CART"
 msgstr "THÊM VÀO GIỎ HÀNG"
 
-#: static/js/script.js:336
+#: static/js/script.js:335
 msgid "REMOVE FROM CART"
 msgstr "XÓA KHỎI GIỎ HÀNG"
+
+#: static/js/script.js:467
+msgid "Are you sure you want to cancel this order?"
+msgstr "Bạn có chắc chắn muốn hủy đơn này không?"

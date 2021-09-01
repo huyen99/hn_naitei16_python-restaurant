@@ -243,8 +243,8 @@ def checkout(request):
         "fprice": final_price
     }
 
-    return render(request,'cart/checkout.html', context)
-    
+    return render(request, 'cart/checkout.html', context)
+
 @login_required
 def handle_checkout(request, id):
     if request.method == "POST":
@@ -297,3 +297,22 @@ def handle_checkout(request, id):
     else:
         messages.error(request, _(f"Bill checkout processing failed."))
         return redirect('index')
+
+@login_required
+def cancel_order(request):
+    success = False
+    new_status = ''
+    order_id = request.POST.get('uuid')
+    order = Bill.objects.prefetch_related('item_set').filter(user=request.user, id=order_id).first()
+    cancelled_status, notExist = Status.objects.get_or_create(name='cancelled')
+    if order and cancelled_status:
+        order.status = cancelled_status
+        order.save()
+        success = True
+        new_status = cancelled_status.name
+        
+    context = {
+        "success": success,
+        "new_status": new_status,
+    }
+    return JsonResponse(context)
