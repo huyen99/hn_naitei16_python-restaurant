@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 08:04+0700\n"
+"POT-Creation-Date: 2021-09-06 17:27+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,6 @@ msgstr ""
 msgid "REMOVE FROM CART"
 msgstr ""
 
-#: static/js/script.js:467
+#: static/js/script.js:466
 msgid "Are you sure you want to cancel this order?"
 msgstr ""

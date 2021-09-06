@@ -486,4 +486,15 @@ $(document).ready(function(){
             });
         }
     });
+    
+    $("[id^='save-']").on('click', function(){
+        localStorage.setItem("saveButtonClicked", this.id);
+    });
+    
+    if (localStorage.getItem("saveButtonClicked")) {
+        var button_id = localStorage.getItem("saveButtonClicked")
+        e = document.getElementById(button_id).offsetParent;
+        e.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+        localStorage.clear();
+    }
 });
