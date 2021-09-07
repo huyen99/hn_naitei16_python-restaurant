@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Payment success" %}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block content %}
+
+<div class="container smtmsg">
+    <br>
+    <h2>{% translate "Payment Success" %} &nbsp;<i style="color: rgb(0, 202, 0);" class="fas fa-check-circle"></i></h2> 
+    <hr>
+    <p class="mt-3">
+        <em>{% translate "Thank you for choosing us." %} 
+            <a target="_blank" href="">{% translate "Show Receipt" %} &nbsp;&nbsp;<i class="fas fa-external-link-alt "></i></a>
+        </em>
+    </p>
+    <br><br>
+    <p><a class="btn btn-primary" href="{% url 'index' %}#menu">{% translate "Continue shopping" %}</a></p>
+</div>
+{% endblock %}

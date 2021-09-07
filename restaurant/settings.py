@@ -148,3 +148,7 @@ STATIC_URL = '/static/'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+# Razorpay test mode
+RAZORPAY_KEY_ID = env('RAZORPAY_KEY_ID')
+RAZORPAY_KEY_SECRET = env('RAZORPAY_KEY_SECRET')

@@ -79,7 +79,7 @@ class User(AbstractUser):
 
     def __str__(self):
         """String for representing the User Model object."""
-        return f'{self.last_name}, {self.first_name}' if self.last_name and self.first_name else self.username
+        return f'{self.last_name} {self.first_name}' if self.last_name and self.first_name else self.username
 
 @receiver(post_save, sender=User)
 def create_cart(sender, instance, created, **kwargs):
@@ -164,6 +164,9 @@ class Bill(models.Model):
     user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, null=True, blank=True)
     status = models.ForeignKey('Status', on_delete=models.SET_NULL, null=True)
+    rzp_id = models.CharField(max_length=255, default='')
+    rzp_payment_id = models.CharField(max_length=255, default='')
+    rzp_signature = models.CharField(max_length=255, default='')
 
     def __str__(self):
         """String for representing the Model object."""

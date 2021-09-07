@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import PasswordChangeForm
@@ -11,10 +11,13 @@ from django.db.models import Avg, Q, Func
 from django.forms import modelform_factory
 from django.db import transaction
 from django.core import serializers
+from django.conf import settings
+from django.forms.models import model_to_dict
 import functools
 import copy
 import json
 import re
+import razorpay
 from decimal import Decimal
 from .models import Food, Review, Reply, Bill, Item, Status, User
 from .forms import UserRegisterForm
@@ -349,3 +352,79 @@ def cancel_order(request):
         "new_status": new_status,
     }
     return JsonResponse(context)
+
+@login_required
+def open_payment(request):
+    if request.method == "POST":
+        language = request.POST.get('lang')
+        order_id = request.POST.get('order_id')
+        current_order = get_object_or_404(Bill, id=order_id)
+        order_total = current_order.total
+        order_currency = 'USD'
+        callback_url = f'http://localhost:8000{language}handle-payment/'
+        order_receipt = order_id
+        notes = {
+            'recipient': current_order.recipient,
+            'shipping_address': current_order.address,
+            'phone_number': current_order.phone_number,
+            'city': current_order.city,
+            'country': current_order.country,
+            'zip_code': current_order.zip_code,
+            'shipping_note': current_order.shipping_note,
+        }
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+        payment = client.order.create(dict(amount=order_total, currency=order_currency, receipt=order_receipt, notes=notes, payment_capture=0))
+        current_order.rzp_id = payment['id']
+        current_order.save()
+
+        context = {
+            "order_id": order_id,
+            "rp_order_id": payment['id'],
+            "order": model_to_dict(current_order),
+            "email": request.user.email,
+            "amount": current_order.total,
+            "razorpay_id": settings.RAZORPAY_KEY_ID,
+            "callback_url": callback_url,
+        }
+        
+        return JsonResponse(context)
+
+@csrf_exempt
+def handle_payment(request):
+    if request.method == "POST":
+        rzp_payment_id = request.POST.get('razorpay_payment_id', '')
+        rzp_id = request.POST.get('razorpay_order_id', '')
+        rzp_signature = request.POST.get('razorpay_signature', '')
+        params_dict = {
+            'razorpay_order_id': rzp_id,
+            'razorpay_payment_id': rzp_payment_id,
+            'razorpay_signature': rzp_signature,
+        }
+        order_db = get_object_or_404(Bill, rzp_id=rzp_id)
+        order_db.rzp_payment_id = rzp_payment_id
+        order_db.rzp_signature = rzp_signature
+        order_db.save()
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+        result = client.utility.verify_payment_signature(params_dict)
+
+        if result == None:
+            amount = order_db.total
+            try:
+                client.payment.capture(rzp_payment_id, amount)
+                purchased = get_object_or_404(Status, name='purchased')
+                order_db.status = purchased
+                order_db.save()
+                extra = {
+                    'order_id': order_db.rzp_id,
+                }
+                return render(request, 'cart/payment_success.html', extra)
+            except:
+                payment_failed = get_object_or_404(Status, name='payment failed')
+                order_db.status = payment_failed
+                order_db.save()
+                return render(request, 'cart/payment_failed.html')
+        else:
+            payment_failed = get_object_or_404(Status, name='payment failed')
+            order_db.status = payment_failed
+            order_db.save()
+            return render(request, 'cart/payment_failed.html')

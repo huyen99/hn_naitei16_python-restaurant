@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-06 17:28+0700\n"
+"POT-Creation-Date: 2021-09-07 10:18+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -494,6 +494,38 @@ msgstr "Thanh toán"
 msgid "Continue Shopping?"
 msgstr "Tiếp tục mua sắm?"
 
+#: templates/cart/payment_failed.html:5
+msgid "OnlineRestaurant | Payment failed"
+msgstr "Thanh toán thất bại"
+
+#: templates/cart/payment_failed.html:14
+msgid "Payment Failed"
+msgstr "Giao dịch không thành công"
+
+#: templates/cart/payment_failed.html:15
+msgid "In case your money has been deducted, money will be auto refunded in 7-10 days. You can contact us for any queries or details."
+msgstr "Nếu tài khoản của bạn đã bị trừ tiền, số tiền sẽ được tự động hoàn trả lại trong vòng 7-10 ngày. Vui lòng liên lạc để biết thêm chi tiết."
+
+#: templates/cart/payment_failed.html:17 templates/cart/payment_success.html:24
+msgid "Continue shopping"
+msgstr "Tiếp tục mua sắm"
+
+#: templates/cart/payment_success.html:5
+msgid "OnlineRestaurant | Payment success"
+msgstr "Thanh toán thành công"
+
+#: templates/cart/payment_success.html:16
+msgid "Payment Success"
+msgstr "Thanh toán thành công"
+
+#: templates/cart/payment_success.html:19
+msgid "Thank you for choosing us."
+msgstr "Cảm ơn vì đã lựa chọn quán."
+
+#: templates/cart/payment_success.html:20
+msgid "Show Receipt"
+msgstr "Xem hóa đơn"
+
 #: templates/foods/details.html:6
 msgid "OnlineRestaurant"
 msgstr ""
@@ -721,22 +753,22 @@ msgstr "Tìm kiếm"
 msgid "Menu"
 msgstr "Thực đơn"
 
-#: views.py:72
+#: views.py:75
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"
 
-#: views.py:220
+#: views.py:223
 msgid "Your password was successfully updated."
 msgstr "Mật khẩu mới của bạn đã được thay đổi."
 
-#: views.py:233
+#: views.py:236
 msgid "Your phone number is invalid."
 msgstr "Số điện thoại bạn nhập không hợp lệ."
 
-#: views.py:236
+#: views.py:239
 msgid "Your information was succesfully updated."
 msgstr "Cập nhật thông tin cá nhân thành công."
 
-#: views.py:331
+#: views.py:334
 msgid "Bill checkout processing failed."
 msgstr "Xử lý hóa đơn thanh toán không thành công."

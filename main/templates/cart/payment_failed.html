@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Payment failed" %}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block content %}
+    <div class="container smtmsg">
+        <h2>{% translate "Payment Failed" %}</h2> 
+        <p>{% translate "In case your money has been deducted, money will be auto refunded in 7-10 days. You can contact us for any queries or details." %}</p>
+        <br>
+        <p><a class="btn btn-primary" href="{% url 'index' %}#menu">{% translate "Continue shopping" %}</a></p>
+    </div>
+{% endblock %}

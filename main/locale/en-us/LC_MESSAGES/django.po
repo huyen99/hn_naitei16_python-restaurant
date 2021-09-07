@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-06 17:28+0700\n"
+"POT-Creation-Date: 2021-09-07 10:18+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -490,6 +490,38 @@ msgstr ""
 msgid "Continue Shopping?"
 msgstr ""
 
+#: templates/cart/payment_failed.html:5
+msgid "OnlineRestaurant | Payment failed"
+msgstr ""
+
+#: templates/cart/payment_failed.html:14
+msgid "Payment Failed"
+msgstr ""
+
+#: templates/cart/payment_failed.html:15
+msgid "In case your money has been deducted, money will be auto refunded in 7-10 days. You can contact us for any queries or details."
+msgstr ""
+
+#: templates/cart/payment_failed.html:17 templates/cart/payment_success.html:24
+msgid "Continue shopping"
+msgstr ""
+
+#: templates/cart/payment_success.html:5
+msgid "OnlineRestaurant | Payment success"
+msgstr ""
+
+#: templates/cart/payment_success.html:16
+msgid "Payment Success"
+msgstr ""
+
+#: templates/cart/payment_success.html:19
+msgid "Thank you for choosing us."
+msgstr ""
+
+#: templates/cart/payment_success.html:20
+msgid "Show Receipt"
+msgstr ""
+
 #: templates/foods/details.html:6
 msgid "OnlineRestaurant"
 msgstr ""
@@ -719,22 +751,22 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: views.py:72
+#: views.py:75
 msgid "Your account has been created! You can login now"
 msgstr ""
 
-#: views.py:220
+#: views.py:223
 msgid "Your password was successfully updated."
 msgstr ""
 
-#: views.py:233
+#: views.py:236
 msgid "Your phone number is invalid."
 msgstr ""
 
-#: views.py:236
+#: views.py:239
 msgid "Your information was succesfully updated."
 msgstr ""
 
-#: views.py:331
+#: views.py:334
 msgid "Bill checkout processing failed."
 msgstr ""
