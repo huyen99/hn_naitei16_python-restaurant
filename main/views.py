@@ -3,17 +3,22 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Avg, Q, Func
+from django.forms import modelform_factory
 from django.db import transaction
 from django.core import serializers
 import functools
 import copy
 import json
+import re
 from decimal import Decimal
-from .models import Food, Review, Reply, Bill, Item, Status
+from .models import Food, Review, Reply, Bill, Item, Status, User
 from .forms import UserRegisterForm
-from .utils.constant import RATE_TEMPLATE
+from .utils.constant import RATE_TEMPLATE, PHONE_NUMBER_VALIDATOR
 
 def get_cart(request):
     bill, cart_items, in_cart = None, None, []
@@ -206,16 +211,44 @@ def remove_from_cart(request, id):
 
 @login_required
 def profile(request):
-    reviews = Review.objects.filter(user=request.user)
-    replies = Reply.objects.filter(user=request.user)
-    status = get_object_or_404(Status, name='cart')
-    orders = Bill.objects.filter(user=request.user).exclude(status=status)
-    
-    context = {
-        "reviews": reviews,
-        "comments": replies,
-        "orders": orders
-    }
+    if request.method == "POST":
+        if request.POST.get('password-reset'):
+            form = PasswordChangeForm(user=request.user, data=request.POST)
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request, form.user)
+                messages.success(request, _("Your password was successfully updated."))
+            messages.warning(request, form.errors)
+
+        else:
+            UserEditForm = modelform_factory(
+                User, 
+                fields=('first_name', 'last_name', 'phone_number', 'address', 'city', 'country', 'zip_code'), 
+            )
+            form = UserEditForm(instance=request.user, data=request.POST or None)
+            if form.is_valid():
+                pattern = re.compile(PHONE_NUMBER_VALIDATOR)
+                phone = form.cleaned_data['phone_number']
+                if phone and not pattern.search(phone):
+                    form.add_error('phone_number', _("Your phone number is invalid."))
+                else:
+                    form.save()
+                    messages.success(request, _("Your information was succesfully updated."))
+            messages.warning(request, form.errors)
+
+        return redirect('profile')
+
+    else:
+        reviews = Review.objects.filter(user=request.user)
+        replies = Reply.objects.filter(user=request.user)
+        status = get_object_or_404(Status, name='cart')
+        orders = Bill.objects.filter(user=request.user).exclude(status=status)
+        
+        context = {
+            "reviews": reviews,
+            "comments": replies,
+            "orders": orders
+        }
     
     return render(request, 'accounts/profile.html', context)
 

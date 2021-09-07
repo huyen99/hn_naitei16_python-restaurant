@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 08:07+0700\n"
+"POT-Creation-Date: 2021-09-06 17:28+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,12 +25,12 @@ msgstr ""
 msgid "Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
 msgstr "Số điện thoại phải có định dạng sau: '+999999999'. Độ dài tối đa là 15 kí tự."
 
-#: forms.py:12 templates/accounts/profile.html:192
+#: forms.py:12 templates/accounts/profile.html:197
 msgid "Phone number"
 msgstr "Số điện thoại"
 
-#: forms.py:13 templates/accounts/profile.html:183
-#: templates/accounts/profile.html:184
+#: forms.py:13 templates/accounts/profile.html:188
+#: templates/accounts/profile.html:189
 msgid "Address"
 msgstr "Địa chỉ"
 
@@ -219,117 +219,121 @@ msgstr "Thay đổi mật khẩu"
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: templates/accounts/profile.html:120
+#: templates/accounts/profile.html:121
 msgid "Password Reset"
 msgstr "Cập nhật mật khẩu"
 
-#: templates/accounts/profile.html:125
+#: templates/accounts/profile.html:126
 msgid "Current password"
 msgstr "Mật khẩu hiển tại"
 
-#: templates/accounts/profile.html:131
+#: templates/accounts/profile.html:132
 msgid "New password"
 msgstr "Mật khẩu mới"
 
-#: templates/accounts/profile.html:137
+#: templates/accounts/profile.html:138
 msgid "New password (confirm)"
 msgstr "Xác nhận mật khẩu mới"
 
-#: templates/accounts/profile.html:145
+#: templates/accounts/profile.html:144 templates/accounts/profile.html:222
+msgid "Save"
+msgstr "Lưu"
+
+#: templates/accounts/profile.html:150
 msgid "User information"
 msgstr "Thông tin cá nhân"
 
-#: templates/accounts/profile.html:150 templates/accounts/profile.html:151
+#: templates/accounts/profile.html:155 templates/accounts/profile.html:156
 msgid "Username"
 msgstr "Tên tài khoản"
 
-#: templates/accounts/profile.html:156
+#: templates/accounts/profile.html:161
 msgid "Email address"
 msgstr "Địa chỉ email"
 
-#: templates/accounts/profile.html:157
+#: templates/accounts/profile.html:162
 msgid "test@example.com"
 msgstr ""
 
-#: templates/accounts/profile.html:164 templates/accounts/profile.html:165
+#: templates/accounts/profile.html:169 templates/accounts/profile.html:170
 msgid "First name"
 msgstr "Tên"
 
-#: templates/accounts/profile.html:170 templates/accounts/profile.html:171
+#: templates/accounts/profile.html:175 templates/accounts/profile.html:176
 msgid "Last name"
 msgstr "Họ"
 
-#: templates/accounts/profile.html:178
+#: templates/accounts/profile.html:183
 msgid "Contact information"
 msgstr "Thông tin liên hệ"
 
-#: templates/accounts/profile.html:191 templates/cart/checkout.html:29
+#: templates/accounts/profile.html:196 templates/cart/checkout.html:29
 msgid "Phone Number"
 msgstr "Số điện thoại"
 
-#: templates/accounts/profile.html:197 templates/accounts/profile.html:198
+#: templates/accounts/profile.html:202 templates/accounts/profile.html:203
 #: templates/cart/checkout.html:39
 msgid "City"
 msgstr "Thành phố"
 
-#: templates/accounts/profile.html:203 templates/accounts/profile.html:204
+#: templates/accounts/profile.html:208 templates/accounts/profile.html:209
 #: templates/cart/checkout.html:43
 msgid "Country"
 msgstr "Quốc gia"
 
-#: templates/accounts/profile.html:209 templates/accounts/profile.html:210
+#: templates/accounts/profile.html:214 templates/accounts/profile.html:215
 msgid "Postal code"
 msgstr "Mã bưu điện"
 
-#: templates/accounts/profile.html:226
+#: templates/accounts/profile.html:235
 msgid "Order History"
 msgstr "Lịch sử đặt hàng"
 
-#: templates/accounts/profile.html:236
+#: templates/accounts/profile.html:245
 msgid "Order ID"
 msgstr "ID đơn hàng"
 
-#: templates/accounts/profile.html:237
+#: templates/accounts/profile.html:246
 msgid "Items"
 msgstr "Món ăn"
 
-#: templates/accounts/profile.html:238 templates/cart/cart.html:31
+#: templates/accounts/profile.html:247 templates/cart/cart.html:31
 msgid "Total"
 msgstr "Tổng"
 
-#: templates/accounts/profile.html:239
+#: templates/accounts/profile.html:248
 msgid "Date and Time"
 msgstr "Ngày giờ"
 
-#: templates/accounts/profile.html:240
+#: templates/accounts/profile.html:249
 msgid "Status"
 msgstr "Trạng thái"
 
-#: templates/accounts/profile.html:241
+#: templates/accounts/profile.html:250
 msgid "Delivered To"
 msgstr "Địa chỉ nhận"
 
-#: templates/accounts/profile.html:242
+#: templates/accounts/profile.html:251
 msgid "Contact No."
 msgstr "Số điện thoại"
 
-#: templates/accounts/profile.html:263
+#: templates/accounts/profile.html:272
 msgid "View Receipt"
 msgstr "Xem hóa đơn"
 
-#: templates/accounts/profile.html:265
+#: templates/accounts/profile.html:274
 msgid "Payment"
 msgstr "Thanh toán"
 
-#: templates/accounts/profile.html:266
+#: templates/accounts/profile.html:275
 msgid "Cancel"
 msgstr "Hủy"
 
-#: templates/accounts/profile.html:273
+#: templates/accounts/profile.html:282
 msgid "Re-Order"
 msgstr "Đặt lại đơn"
 
-#: templates/accounts/profile.html:281
+#: templates/accounts/profile.html:290
 msgid "You have not ordered anything yet."
 msgstr "Bạn chưa có đơn hàng nào cả."
 
@@ -717,10 +721,22 @@ msgstr "Tìm kiếm"
 msgid "Menu"
 msgstr "Thực đơn"
 
-#: views.py:67
+#: views.py:72
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"
 
-#: views.py:298
+#: views.py:220
+msgid "Your password was successfully updated."
+msgstr "Mật khẩu mới của bạn đã được thay đổi."
+
+#: views.py:233
+msgid "Your phone number is invalid."
+msgstr "Số điện thoại bạn nhập không hợp lệ."
+
+#: views.py:236
+msgid "Your information was succesfully updated."
+msgstr "Cập nhật thông tin cá nhân thành công."
+
+#: views.py:331
 msgid "Bill checkout processing failed."
 msgstr "Xử lý hóa đơn thanh toán không thành công."
