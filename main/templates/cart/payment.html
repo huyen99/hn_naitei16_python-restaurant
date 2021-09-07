@@ -12,17 +12,17 @@
 
 {% block content %}
 
-<div class="checkout-main checkout-container">
+    <div class="checkout-main checkout-container">
 
-    <div class="text-center">
-        <div class="card-header">
-            {% translate "Your order id is" %} <mark>{{ order.id }}</mark>
+        <div class="text-center">
+            <div class="card-header">
+                {% translate "Your order id is" %} <mark>{{ order.id }}</mark>
+            </div>
         </div>
+        <br>
+        <button class="btn btn-primary" id="rzp-button1" data-order="{{ order.id }}">{% translate "Pay" %} ${{ order.total }}</button>
+        <a href="{% url 'index' %}#menu">{% translate "Continue Shopping?" %}</a>
+    
     </div>
-    <br>
-    <button class="btn btn-primary" id="rzp-button1">{% translate "Pay" %} ${{ order.total }}</button>
-    <a href="{% url 'index' %}#menu">{% translate "Continue Shopping?" %}</a>
- 
-</div>
 
 {% endblock %}

@@ -497,4 +497,52 @@ $(document).ready(function(){
         e.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
         localStorage.clear();
     }
+    
+    $("#rzp-button1").on('click', function(){
+        var order_id = $(this).data('order');
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + lang + 'open-payment/',
+            data: {
+                'lang': lang,
+                'order_id': order_id,
+                'csrfmiddlewaretoken': csrftoken
+            },
+            dataType: 'json',
+            success: function(rs){
+                var order = rs.order;
+                var options = {
+                    "key": `${rs.razorpay_id}`, 
+                    "amount": `${rs.amount}`, 
+                    "currency": "USD",
+                    "name": "Online Restaurant",
+                    "description": "Test Transaction",
+                    "image": "/static/img/logo.jpeg",
+                    "order_id": `${rs.rp_order_id}`, 
+                    "callback_url": `${rs.callback_url}`,
+                    "prefill": {
+                        "name": `${order.recipient}`,
+                        "email": `${rs.email}`,
+                        "contact": `+94${order.phone_number}`,
+                    },
+                    "notes": {
+                        'shipping_address': `${order.address}`,
+                        'city': `${order.city}`,
+                        'country': `${order.country}`,
+                        'zip_code': `${order.zip_code}`,
+                    },
+                    "theme": {
+                        "color": "#910DFD"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            },
+            error: function(rs, e){
+                console.log("Error");
+            },
+        });
+    });
 });

@@ -25,4 +25,6 @@ urlpatterns = [
     path('handle-checkout/', views.handle_checkout, name="handle-checkout"),
     path('payment/<uuid:id>', views.handle_checkout, name="payment"),
     path('cancel-order/', views.cancel_order, name="cancel-order"),
+    path('open-payment/', views.open_payment, name="open-payment"),
+    path('handle-payment/', views.handle_payment, name="handle-payment"),
 ]
