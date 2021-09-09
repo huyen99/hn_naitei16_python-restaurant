@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-07 10:18+0700\n"
+"POT-Creation-Date: 2021-09-09 09:34+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,8 +93,8 @@ msgstr "Hai trường mật khẩu không giống nhau."
 msgid "OnlineRestaurant | Login"
 msgstr "Đăng nhập"
 
-#: templates/accounts/login.html:16 templates/index.html:103
-#: templates/layouts/navbar.html:20
+#: templates/accounts/login.html:16 templates/accounts/wishlist.html:47
+#: templates/index.html:103 templates/layouts/navbar.html:20
 msgid "Login"
 msgstr "Đăng nhập"
 
@@ -175,7 +175,7 @@ msgstr "Chỉnh sửa"
 msgid "Reviews"
 msgstr "Đánh giá"
 
-#: templates/accounts/profile.html:68 templates/foods/details.html:189
+#: templates/accounts/profile.html:68 templates/foods/details.html:199
 msgid "Comments"
 msgstr "Bình luận"
 
@@ -357,6 +357,33 @@ msgstr "Đã có tài khoản?"
 msgid "Sign In"
 msgstr "Đăng nhập"
 
+#: templates/accounts/wishlist.html:6
+msgid "OnlineRestaurant | Wishlist"
+msgstr "Danh sách ưa thích"
+
+#: templates/accounts/wishlist.html:16 templates/layouts/navbar.html:17
+msgid "Wishlist"
+msgstr "Ưa thích"
+
+#: templates/accounts/wishlist.html:22
+msgid "You have"
+msgstr "Bạn có"
+
+#: templates/accounts/wishlist.html:23
+msgid "item"
+msgid_plural "items"
+msgstr[0] "món ăn"
+
+#: templates/accounts/wishlist.html:24
+msgid "in wishlist"
+msgstr "trong danh sách ưa thích"
+
+#: templates/accounts/wishlist.html:33 templates/accounts/wishlist.html:36
+#: templates/cart/cart.html:39 templates/cart/cart.html:41
+#: templates/index.html:89 templates/index.html:92
+msgid "Food Image"
+msgstr "Ảnh món ăn"
+
 #: templates/cart/cart.html:6
 msgid "OnlineRestaurant | Cart"
 msgstr "Giỏ hàng"
@@ -380,11 +407,6 @@ msgstr "Số lượng"
 #: templates/cart/cart.html:32
 msgid "Remove"
 msgstr "Xóa"
-
-#: templates/cart/cart.html:39 templates/cart/cart.html:41
-#: templates/index.html:89 templates/index.html:92
-msgid "Food Image"
-msgstr "Ảnh món ăn"
 
 #: templates/cart/cart.html:82
 msgid "Order Summary:"
@@ -542,73 +564,73 @@ msgstr "Trước"
 msgid "Next"
 msgstr "Sau"
 
-#: templates/foods/details.html:84
+#: templates/foods/details.html:90
 msgid "OFF"
 msgstr ""
 
-#: templates/foods/details.html:115
+#: templates/foods/details.html:125
 msgid "REMOVE FROM CART"
 msgstr "XÓA KHỎI GIỎ HÀNG"
 
-#: templates/foods/details.html:120
+#: templates/foods/details.html:130
 msgid "ADD TO CART"
 msgstr "THÊM VÀO GIỎ HÀNG"
 
-#: templates/foods/details.html:126
+#: templates/foods/details.html:136
 msgid "PROCESS"
 msgstr "ĐĂNG NHẬP"
 
-#: templates/foods/details.html:145
+#: templates/foods/details.html:155
 msgid "Average user rating"
 msgstr "Trung bình đánh giá của người dùng"
 
-#: templates/foods/details.html:161
+#: templates/foods/details.html:171
 msgid "Rating breakdown"
 msgstr "Thống kê"
 
-#: templates/foods/details.html:185
+#: templates/foods/details.html:195
 msgid "Leave your comment"
 msgstr "Hãy để lại nhận xét ở đây"
 
-#: templates/foods/details.html:190
+#: templates/foods/details.html:200
 msgid "Add comment"
 msgstr "Thêm đánh giá"
 
-#: templates/foods/details.html:198 templates/foods/details.html:226
+#: templates/foods/details.html:208 templates/foods/details.html:236
 msgid "profile"
 msgstr "Hồ sơ cá nhân"
 
-#: templates/foods/details.html:214
+#: templates/foods/details.html:224
 msgid "Reply"
 msgstr "Trả lời"
 
-#: templates/foods/details.html:215
+#: templates/foods/details.html:225
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "phản hồi"
 
-#: templates/foods/details.html:217 templates/foods/details.html:234
+#: templates/foods/details.html:227 templates/foods/details.html:244
 msgid "Delete"
 msgstr "Xoá"
 
-#: templates/foods/details.html:246 templates/foods/details.html:282
+#: templates/foods/details.html:256 templates/foods/details.html:292
 #: templates/layouts/footer.html:39
 msgid "Comment"
 msgstr "Nhận xét"
 
-#: templates/foods/details.html:254 templates/foods/details.html:290
+#: templates/foods/details.html:264 templates/foods/details.html:300
 msgid "Submit comment"
 msgstr "Gửi"
 
-#: templates/foods/details.html:256
+#: templates/foods/details.html:266
 msgid "Login to comment"
 msgstr "Đăng nhập để trả lời"
 
-#: templates/foods/details.html:270
+#: templates/foods/details.html:280
 msgid "Rating"
 msgstr "Đánh giá"
 
-#: templates/foods/details.html:292
+#: templates/foods/details.html:302
 msgid "Login to submit"
 msgstr "Đăng nhập để gửi"
 
@@ -729,10 +751,6 @@ msgstr "Xin chào"
 msgid "Profile"
 msgstr "Hồ sơ cá nhân"
 
-#: templates/layouts/navbar.html:17
-msgid "My Orders"
-msgstr "Đơn của tôi"
-
 #: templates/layouts/navbar.html:18
 msgid "Logout"
 msgstr "Đăng xuất"
@@ -753,22 +771,26 @@ msgstr "Tìm kiếm"
 msgid "Menu"
 msgstr "Thực đơn"
 
-#: views.py:75
+#: views.py:79
 msgid "Your account has been created! You can login now"
 msgstr "Tạo tài khoản thành công! Đã sẵn sàng để đăng nhập"
 
-#: views.py:223
+#: views.py:231
 msgid "Your password was successfully updated."
 msgstr "Mật khẩu mới của bạn đã được thay đổi."
 
-#: views.py:236
+#: views.py:244
 msgid "Your phone number is invalid."
 msgstr "Số điện thoại bạn nhập không hợp lệ."
 
-#: views.py:239
+#: views.py:247
 msgid "Your information was succesfully updated."
 msgstr "Cập nhật thông tin cá nhân thành công."
 
-#: views.py:334
+#: views.py:342
 msgid "Bill checkout processing failed."
 msgstr "Xử lý hóa đơn thanh toán không thành công."
+
+#: views.py:484
+msgid "Failed removing item from wishlist."
+msgstr "Xoá món ăn khỏi danh sách không thành công."

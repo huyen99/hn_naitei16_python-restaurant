@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-07 10:18+0700\n"
+"POT-Creation-Date: 2021-09-08 20:33+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,3 +53,15 @@ msgstr "XÓA KHỎI GIỎ HÀNG"
 #: static/js/script.js:466
 msgid "Are you sure you want to cancel this order?"
 msgstr "Bạn có chắc chắn muốn hủy đơn này không?"
+
+#: static/js/script.js:585
+msgid "You have 1 item in wishlist"
+msgstr "Bạn có 1 món ăn trong danh sách ưa thích"
+
+#: static/js/script.js:588
+msgid "You have"
+msgstr "Bạn có"
+
+#: static/js/script.js:588
+msgid "items in wishlist"
+msgstr "món ăn trong danh sách ưa thích"

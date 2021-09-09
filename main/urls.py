@@ -27,4 +27,7 @@ urlpatterns = [
     path('cancel-order/', views.cancel_order, name="cancel-order"),
     path('open-payment/', views.open_payment, name="open-payment"),
     path('handle-payment/', views.handle_payment, name="handle-payment"),
+    path('wishlist/', views.wishlist, name="wishlist"),
+    path('add-to-wishlist/', views.add_to_wishlist, name="add-to-wishlist"),
+    path('remove-from-wishlist/<int:id>', views.remove_from_wishlist, name="remove-from-wishlist"),
 ]

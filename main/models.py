@@ -71,6 +71,7 @@ class User(AbstractUser):
     zip_code = models.CharField(max_length=100, null=True, blank=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    food_saved = models.ManyToManyField('Food', blank=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.

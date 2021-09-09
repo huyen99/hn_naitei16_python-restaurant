@@ -95,9 +95,9 @@
                     <div id="cart-section-{{ food.id }}" class="text">
                         {% if user.is_authenticated %}
                             {% if food in in_cart %}
-                                <a id="atc" type="submit" data-token="{{ csrf_token }}" name="food_id" value="{{ food.id }}" ><i class="fas fa-check-circle"></i></a>
+                                <a id="atc" type="submit" name="food_id" value="{{ food.id }}" ><i class="fas fa-check-circle"></i></a>
                             {% else %}
-                                <a id="atc" type="submit" data-token="{{ csrf_token }}" name="food_id" value="{{ food.id }}" ><i class="fas fa-cart-plus"></i></a>
+                                <a id="atc" type="submit" name="food_id" value="{{ food.id }}" ><i class="fas fa-cart-plus"></i></a>
                             {% endif %}
                         {% else %}
                             <a href="{% url 'login' %}"><i class="fas fa-cart-plus"></i>{% translate "Login" %}</a>
@@ -105,11 +105,19 @@
                     </div>
                 </div>
                 <div class="food-container">
-                    <h4 class="foodName">
-                        {{ food.name }}
-                        <a class="foodLink" href="{% url 'food-details' food.id %}"><i class="fas fa-external-link-alt "></i></a>
-                        <i class="far fa-heart nf-heart"></i>
-                    </h4>
+                    <div class="foodName-wrap">
+                        <h4 class="foodName">
+                            {{ food.name }}
+                            <a class="foodLink" href="{% url 'food-details' food.id %}"><i class="fas fa-external-link-alt "></i></a>                        
+                        </h4>
+                        {% if user.is_authenticated %}
+                            {% if food in wishlist %}
+                                <a id="like-{{ food.id }}-menu" type="submit" name="menu-view" value="{{ food.id }}" ><i class="fas fa-heart nf-heart"></i></a>
+                            {% else %}
+                                <a id="like-{{ food.id }}-menu" type="submit" name="menu-view" value="{{ food.id }}" ><i class="far fa-heart nf-heart"></i></a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                     <p>
                         {% if food.avg_rating %}
                             {% for i in '12345'|make_list %}
@@ -118,7 +126,9 @@
                                 {% endif %}
                             {% endfor %}
                         {% else %}
-                            <span class="far fa-star nf-star"></span>
+                            {% for i in '12345'|make_list %}
+                                <span class="far fa-star nf-star"></span>
+                            {% endfor %}    
                         {% endif %}
                     </p>
                     <p class="c-subtext">${{ food.price }}</p>

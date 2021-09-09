@@ -49,6 +49,9 @@ def count_rating(reviews):
 def index(request):
     foods = Food.objects.prefetch_related('image_set').annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')
     query = ''
+    wishlist = None
+    if request.user.is_authenticated:
+        wishlist = request.user.food_saved.all()
 
     if request.method == 'GET' and 'query' in request.GET:
         query = request.GET['query'].strip()
@@ -61,7 +64,8 @@ def index(request):
     context = {
         "foods": foods,
         "keyword": query,
-        "in_cart": in_cart
+        "in_cart": in_cart,
+        "wishlist": wishlist,
     }
     return render(request, 'index.html', context)
 
@@ -89,11 +93,15 @@ def food_details(request, id):
     _, _, in_cart = get_cart(request)
     reviews = food.review_set.all()
     _rate = count_rating(reviews)
+    wishlist = None
+    if request.user.is_authenticated:
+        wishlist = request.user.food_saved.all()
 
     context = {
         "food": food,
         "rate_dict": _rate,
-        "in_cart": in_cart
+        "in_cart": in_cart,
+        "wishlist": wishlist,
     }
     return render(request, 'foods/details.html', context)
 
@@ -428,3 +436,54 @@ def handle_payment(request):
             order_db.status = payment_failed
             order_db.save()
             return render(request, 'cart/payment_failed.html')
+
+@login_required
+def wishlist(request):
+    user = request.user
+    wishlist = user.food_saved.annotate(avg_rating=Avg('review__rating')).all()
+    _, _, in_cart = get_cart(request)
+
+    context = {
+        "wishlist": wishlist,
+        "in_cart": in_cart
+    }
+    return render(request, 'accounts/wishlist.html', context)
+    
+@login_required
+def add_to_wishlist(request):
+    '''Add/remove from menu view'''
+    if request.method == "POST":
+        action = ''
+        user = request.user
+        food = get_object_or_404(Food, id=request.POST.get('food_id'))
+
+        if user.food_saved.filter(id=food.id).exists():
+            user.food_saved.remove(food)
+            action = 'remove'
+        else:
+            user.food_saved.add(food)
+            action = 'add'
+
+        context = {
+            "action": action,
+        }
+
+        return JsonResponse(context)
+
+@login_required
+def remove_from_wishlist(request, id):
+    '''Remove from wishlist view'''
+    if request.method == "DELETE":
+        success = False
+        user = request.user
+        food = get_object_or_404(Food, id=id)
+        try:
+            user.food_saved.remove(food)
+            success = True
+        except:
+            messages.error(request, _(f"Failed removing item from wishlist."))
+
+        context = {
+            "success": success,
+        }
+        return JsonResponse(context)

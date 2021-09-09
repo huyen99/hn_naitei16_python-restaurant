@@ -545,4 +545,70 @@ $(document).ready(function(){
             },
         });
     });
+    
+    function toggleSave(x){
+        if(x.classList.contains('far'))
+        {
+            x.classList.remove('far')
+            x.classList.add('fas')
+        }
+        else
+        {
+            x.classList.remove('fas')
+            x.classList.add('far')
+        } 
+    }
+    
+    // ADD OR REMOVE FROM WISHLIST
+    $(document).on('click', '[id^="like"]', function(e){
+        e.preventDefault();
+        var icon = e.currentTarget;
+        var food_id = $(this).attr('value');
+        var option = $(this).attr('name');
+        if (window.location.href.indexOf('/en-us/') != -1) lang = '/en-us/';
+        else lang = '/vi/';
+        if (option == 'wishlist-view') {
+            var wishlist_len = $('#wishlist-p ul em')[0];
+            var new_wishlist_len = parseInt(wishlist_len.innerText.split(' ')[2]) - 1;
+            $.ajax({
+                type: 'DELETE',
+                url: window.location.origin + lang + 'remove-from-wishlist/' + parseInt(food_id),
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function(rs){
+                    $('#wishlist-' + food_id).remove();
+                    var _html = '';
+                    if (new_wishlist_len == 1) {
+                        _html += `${gettext("You have 1 item in wishlist")}`;
+                    }
+                    else {
+                        _html += `${gettext("You have")} ${new_wishlist_len} ${gettext("items in wishlist")}`;
+                    }
+                    wishlist_len.innerText = _html;
+                },
+                error: function(rs, e){
+                    console.log("Error");
+                },
+            });
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                url: window.location.origin + lang + 'add-to-wishlist/',
+                data: {
+                    'food_id': food_id,
+                    'csrfmiddlewaretoken': csrftoken
+                },
+                dataType: 'json',
+                success: function(rs){
+                    toggleSave(icon.children[0]);
+                },
+                error: function(rs, e){
+                    console.log("Error");
+                },
+            });
+        }
+    });
 });

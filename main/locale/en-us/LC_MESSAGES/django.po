@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-07 10:18+0700\n"
+"POT-Creation-Date: 2021-09-09 09:34+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,8 +89,8 @@ msgstr ""
 msgid "OnlineRestaurant | Login"
 msgstr ""
 
-#: templates/accounts/login.html:16 templates/index.html:103
-#: templates/layouts/navbar.html:20
+#: templates/accounts/login.html:16 templates/accounts/wishlist.html:47
+#: templates/index.html:103 templates/layouts/navbar.html:20
 msgid "Login"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr ""
 msgid "Reviews"
 msgstr ""
 
-#: templates/accounts/profile.html:68 templates/foods/details.html:189
+#: templates/accounts/profile.html:68 templates/foods/details.html:199
 msgid "Comments"
 msgstr ""
 
@@ -353,6 +353,34 @@ msgstr ""
 msgid "Sign In"
 msgstr ""
 
+#: templates/accounts/wishlist.html:6
+msgid "OnlineRestaurant | Wishlist"
+msgstr ""
+
+#: templates/accounts/wishlist.html:16 templates/layouts/navbar.html:17
+msgid "Wishlist"
+msgstr ""
+
+#: templates/accounts/wishlist.html:22
+msgid "You have"
+msgstr ""
+
+#: templates/accounts/wishlist.html:23
+msgid "item"
+msgid_plural "items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/accounts/wishlist.html:24
+msgid "in wishlist"
+msgstr ""
+
+#: templates/accounts/wishlist.html:33 templates/accounts/wishlist.html:36
+#: templates/cart/cart.html:39 templates/cart/cart.html:41
+#: templates/index.html:89 templates/index.html:92
+msgid "Food Image"
+msgstr ""
+
 #: templates/cart/cart.html:6
 msgid "OnlineRestaurant | Cart"
 msgstr ""
@@ -375,11 +403,6 @@ msgstr ""
 
 #: templates/cart/cart.html:32
 msgid "Remove"
-msgstr ""
-
-#: templates/cart/cart.html:39 templates/cart/cart.html:41
-#: templates/index.html:89 templates/index.html:92
-msgid "Food Image"
 msgstr ""
 
 #: templates/cart/cart.html:82
@@ -538,74 +561,74 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: templates/foods/details.html:84
+#: templates/foods/details.html:90
 msgid "OFF"
 msgstr ""
 
-#: templates/foods/details.html:115
+#: templates/foods/details.html:125
 msgid "REMOVE FROM CART"
 msgstr ""
 
-#: templates/foods/details.html:120
+#: templates/foods/details.html:130
 msgid "ADD TO CART"
 msgstr ""
 
-#: templates/foods/details.html:126
+#: templates/foods/details.html:136
 msgid "PROCESS"
 msgstr ""
 
-#: templates/foods/details.html:145
+#: templates/foods/details.html:155
 msgid "Average user rating"
 msgstr ""
 
-#: templates/foods/details.html:161
+#: templates/foods/details.html:171
 msgid "Rating breakdown"
 msgstr ""
 
-#: templates/foods/details.html:185
+#: templates/foods/details.html:195
 msgid "Leave your comment"
 msgstr ""
 
-#: templates/foods/details.html:190
+#: templates/foods/details.html:200
 msgid "Add comment"
 msgstr ""
 
-#: templates/foods/details.html:198 templates/foods/details.html:226
+#: templates/foods/details.html:208 templates/foods/details.html:236
 msgid "profile"
 msgstr ""
 
-#: templates/foods/details.html:214
+#: templates/foods/details.html:224
 msgid "Reply"
 msgstr ""
 
-#: templates/foods/details.html:215
+#: templates/foods/details.html:225
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/foods/details.html:217 templates/foods/details.html:234
+#: templates/foods/details.html:227 templates/foods/details.html:244
 msgid "Delete"
 msgstr ""
 
-#: templates/foods/details.html:246 templates/foods/details.html:282
+#: templates/foods/details.html:256 templates/foods/details.html:292
 #: templates/layouts/footer.html:39
 msgid "Comment"
 msgstr ""
 
-#: templates/foods/details.html:254 templates/foods/details.html:290
+#: templates/foods/details.html:264 templates/foods/details.html:300
 msgid "Submit comment"
 msgstr ""
 
-#: templates/foods/details.html:256
+#: templates/foods/details.html:266
 msgid "Login to comment"
 msgstr ""
 
-#: templates/foods/details.html:270
+#: templates/foods/details.html:280
 msgid "Rating"
 msgstr ""
 
-#: templates/foods/details.html:292
+#: templates/foods/details.html:302
 msgid "Login to submit"
 msgstr ""
 
@@ -727,10 +750,6 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: templates/layouts/navbar.html:17
-msgid "My Orders"
-msgstr ""
-
 #: templates/layouts/navbar.html:18
 msgid "Logout"
 msgstr ""
@@ -751,22 +770,26 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: views.py:75
+#: views.py:79
 msgid "Your account has been created! You can login now"
 msgstr ""
 
-#: views.py:223
+#: views.py:231
 msgid "Your password was successfully updated."
 msgstr ""
 
-#: views.py:236
+#: views.py:244
 msgid "Your phone number is invalid."
 msgstr ""
 
-#: views.py:239
+#: views.py:247
 msgid "Your information was succesfully updated."
 msgstr ""
 
-#: views.py:334
+#: views.py:342
 msgid "Bill checkout processing failed."
+msgstr ""
+
+#: views.py:484
+msgid "Failed removing item from wishlist."
 msgstr ""

@@ -1,0 +1,80 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% translate "OnlineRestaurant | Wishlist" %}
+{% endblock %}
+
+{% block fbgnav %}
+    nav-fbg
+{% endblock %}
+
+{% block content %}
+
+    <div class="m-jumbo">
+        <h2 class="p2-heading">{% translate "Wishlist" %}</h2>
+    </div>
+    
+    <div id="wishlist-p" >
+        <ul class="breadcrumb">
+            <em>
+                {% translate "You have" %} {{ wishlist|length }}
+                {% blocktranslate count count=wishlist|length %}item{% plural %}items{% endblocktranslate %}
+                {% translate "in wishlist" %}
+            </em>
+        </ul>
+        
+        <div class="third-part">
+            {% for food in wishlist %}
+                <div class="food-card" id="wishlist-{{ food.id }}">
+                    {% for img in food.image_set.all %}
+                        {% if forloop.counter == 1 %}
+                            <img src="{{ img.url }}" alt="{% translate 'Food Image' %}" style="width: 100%; height: 50%">
+                        {% endif %}
+                    {% empty %}
+                        <img src="{% static 'img/default.jpeg' %}" alt="{% translate 'Food Image' %}" style="width:100%">
+                    {% endfor %}
+                    <div class="middle">
+                        <div id="cart-section-{{ food.id }}" class="text">
+                            {% if user.is_authenticated %}
+                                {% if food in in_cart %}
+                                    <a id="atc" type="submit" data-token="{{ csrf_token }}" name="food_id" value="{{ food.id }}" ><i class="fas fa-check-circle"></i></a>
+                                {% else %}
+                                    <a id="atc" type="submit" data-token="{{ csrf_token }}" name="food_id" value="{{ food.id }}" ><i class="fas fa-cart-plus"></i></a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{% url 'login' %}"><i class="fas fa-cart-plus"></i>{% translate "Login" %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="food-container">
+                        <div class="foodName-wrap">
+                            <h4 class="foodName">
+                                {{ food.name }}
+                                <a class="foodLink" href="{% url 'food-details' food.id %}"><i class="fas fa-external-link-alt "></i></a>
+                            </h4>
+                            <a id="like-{{ food.id }}-wishlist" data-length="{{ wishlist|length }}" type="submit" name="wishlist-view" value="{{ food.id }}"><i class="fas fa-ban f-heart"></i></a>
+                        </div>
+                        <p>
+                            {% if food.avg_rating %}
+                                {% for i in '12345'|make_list %}
+                                    {% if forloop.counter <= food.avg_rating %}
+                                        <span class="fas fa-star f-star"></span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% for i in '12345'|make_list %}
+                                    <span class="far fa-star nf-star"></span>
+                                {% endfor %}    
+                            {% endif %}
+                        </p>
+                        <p class="c-subtext">${{ food.price }}</p>
+                        <p class="food-description">{{ food.description|truncatechars:150 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

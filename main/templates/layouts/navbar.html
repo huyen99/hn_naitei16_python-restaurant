@@ -14,7 +14,7 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}">{% translate 'Profile' %}</a>
                 <a href="{% url 'cart' %}">{% translate 'Cart' %}</a>
-                <a href="">{% translate 'My Orders' %}</a>
+                <a href="{% url 'wishlist' %}">{% translate 'Wishlist' %}</a>
                 <a href="{% url 'logout' %}">{% translate 'Logout' %}</a>
             {% else %}
                 <a href="{% url 'login' %}">{% translate 'Login' %}</a>

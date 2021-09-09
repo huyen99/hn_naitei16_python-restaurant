@@ -73,7 +73,13 @@
                             <div class="food p-4">
                                 <div class="mt-4 mb-3"> 
                                     <div class="float-right d-inline">
-                                        <i class="fa fa-heart text-muted f-heart"></i>
+                                        {% if user.is_authenticated %}
+                                            {% if food in wishlist %}
+                                                <a id="like-{{ food.id }}-menu" type="submit" name="menu-view" value="{{ food.id }}" ><i class="fas fa-heart nf-heart"></i></a>
+                                            {% else %}
+                                                <a id="like-{{ food.id }}-menu" type="submit" name="menu-view" value="{{ food.id }}" ><i class="far fa-heart nf-heart"></i></a>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                     <p class="detail-name text-uppercase"><b>{{ food.name }}</b></p>
                                     <div class="price d-flex flex-row align-items-center">
@@ -99,7 +105,11 @@
                                                 {% endif %}
                                             {% endfor %}
                                         {% else %}
-                                            <span class="far fa-star nf-star"></span>
+                                            {% for i in '12345'|make_list %}
+                                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                </button>
+                                            {% endfor %}    
                                         {% endif %}
                                     </p>
                                 </div>
